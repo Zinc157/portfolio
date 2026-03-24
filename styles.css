@@ -1,6 +1,7 @@
 /* S'assurer que l'image couvre toute la page et reste fixe pendant le défilement */
 body {
-    background-image: url('imagefond.jpg'); /* Remplace par le chemin de ton image */
+    body {
+    background-image: url('imagefond.jpg');  /* Remplace par le chemin de ton image */
     background-size: cover; /* Couvre toute la zone sans déformation */
     background-position: center; /* Centre l'image dans la fenêtre */
     background-repeat: no-repeat; /* Empêche la répétition de l'image */
