@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Mise en Place d’un IP PBX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Mise en Place d’un IP PBX</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce guide explique comment mettre en place un PBX basé sur IP pour gérer les appels via un réseau informatique, offrant des avantages en termes de coût et de flexibilité.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Connaissances de base en réseaux et téléphonie VoIP.</li>
+                    <li>Accès à un serveur dédié ou à une machine virtuelle pour le déploiement.</li>
+                    <li>Installation d’un logiciel PBX compatible IP tel qu’Asterisk ou FreePBX.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Étapes de Mise en Place</h2>
+                <h3>1. Préparation de l’Environnement</h3>
+                <p>Assurez-vous que le système est à jour :</p>
+                <code>
+# Mettre à jour le système
+sudo apt update && sudo apt upgrade
+                </code>
+
+                <h3>2. Installation du Logiciel IP PBX</h3>
+                <p>Installez le logiciel nécessaire :</p>
+                <code>
+# Exemple pour Asterisk
+sudo apt install asterisk
+                </code>
+
+                <h3>3. Configuration des Extensions</h3>
+                <p>Définissez les extensions pour les utilisateurs :</p>
+                <code>
+# Modifier le fichier des extensions
+sudo nano /etc/asterisk/extensions.conf
+
+# Exemple de configuration
+[internal]
+    exten => 101,1,Dial(SIP/user1)
+    exten => 102,1,Dial(SIP/user2)
+                </code>
+
+                <h3>4. Configuration des Trunks SIP</h3>
+                <p>Ajoutez un trunk SIP pour permettre les appels externes :</p>
+                <ul>
+                    <li>Entrez les informations d’authentification fournies par le fournisseur SIP.</li>
+                    <li>Testez la connectivité après la configuration.</li>
+                </ul>
+
+                <h3>5. Routage des Appels</h3>
+                <p>Définissez les règles de routage :</p>
+                <code>
+# Exemple de routage sortant
+[outbound]
+    exten => _X.,1,Dial(SIP/${EXTEN}@sip_provider)
+                </code>
+            </section>
+
+            <section>
+                <h2>Bonnes Pratiques</h2>
+                <ul>
+                    <li>Utiliser des mots de passe sécurisés pour les comptes SIP.</li>
+                    <li>Configurer un pare-feu pour limiter l’accès au serveur PBX.</li>
+                    <li>Planifier des sauvegardes régulières de la configuration.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Mise en Place d’un IP PBX. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principes des Firewalls</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Principes des Firewalls</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Les firewalls, ou pare-feu, jouent un rôle essentiel dans la protection des réseaux en contrôlant et en surveillant le trafic entrant et sortant. Ils servent de barrière entre un réseau sécurisé et des sources non sécurisées.</p>
+            </section>
+
+            <section>
+                <h2>Fonctionnement des Firewalls</h2>
+                <p>Un firewall examine les données circulant dans un réseau en fonction d'un ensemble de règles prédéfinies. Il peut :</p>
+                <ul>
+                    <li>Bloquer le trafic non autorisé.</li>
+                    <li>Autoriser le trafic légitime.</li>
+                    <li>Surveiller les tentatives d'intrusion.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Types de Firewalls</h2>
+                <p>Il existe plusieurs types de firewalls, chacun adapté à des besoins spécifiques :</p>
+                <ul>
+                    <li><strong>Firewall matériel :</strong> Un appareil dédié placé entre le réseau interne et Internet.</li>
+                    <li><strong>Firewall logiciel :</strong> Une application installée sur un serveur ou un ordinateur.</li>
+                    <li><strong>Firewall basé sur le cloud :</strong> Une solution gérée à distance pour les infrastructures modernes.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Configuration d'un Firewall</h2>
+                <p>Voici une configuration de base pour un firewall logiciel sous Linux :</p>
+                <code>
+sudo ufw enable
+sudo ufw allow 80/tcp   # Autoriser le trafic HTTP
+sudo ufw allow 443/tcp  # Autoriser le trafic HTTPS
+sudo ufw deny 23/tcp    # Bloquer Telnet
+sudo ufw status verbose # Vérifier l'état
+                </code>
+            </section>
+
+            <section>
+                <h2>Bonnes Pratiques</h2>
+                <p>Pour maximiser l'efficacité d'un firewall :</p>
+                <ul>
+                    <li>Mettre à jour régulièrement les règles.</li>
+                    <li>Surveiller les logs pour détecter des activités suspectes.</li>
+                    <li>Restreindre les ports et les adresses IP non nécessaires.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Principes des Firewalls. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

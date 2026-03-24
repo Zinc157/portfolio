@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Directory : Configuration et Gestion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Active Directory : Configuration et Gestion</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Active Directory (AD) est un service de gestion des identités et des accès, développé par Microsoft. Il est essentiel pour gérer les utilisateurs, les groupes, les ressources et les politiques dans un réseau d’entreprise.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Un serveur Windows Server configuré avec un accès administrateur.</li>
+                    <li>Une compréhension de base des concepts réseaux, tels que les DNS et les IP.</li>
+                    <li>Une version Windows Server prenant en charge Active Directory.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Étapes pour Configurer Active Directory</h2>
+                <ol>
+                    <li>
+                        <strong>Installer le rôle Active Directory :</strong>
+                        <p>Ouvrez le gestionnaire de serveur, cliquez sur "Ajouter des rôles et des fonctionnalités", et sélectionnez "Services de domaine Active Directory".</p>
+                    </li>
+                    <li>
+                        <strong>Promouvoir le serveur en contrôleur de domaine :</strong>
+                        <p>Après l'installation, cliquez sur "Promouvoir ce serveur en contrôleur de domaine". Configurez un nouveau domaine ou rejoignez un domaine existant.</p>
+                    </li>
+                    <li>
+                        <strong>Configurer les utilisateurs et les groupes :</strong>
+                        <p>Utilisez l'outil "Utilisateurs et ordinateurs Active Directory" pour créer et gérer des utilisateurs et des groupes.</p>
+                    </li>
+                    <li>
+                        <strong>Configurer les stratégies de groupe (GPO) :</strong>
+                        <p>Accédez à l’éditeur de gestion des stratégies de groupe pour appliquer des politiques à des utilisateurs ou des groupes spécifiques.</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Commandes Utiles</h2>
+                <ul>
+                    <li><code>dsadd user</code> : Ajouter un nouvel utilisateur.</li>
+                    <li><code>dsadd group</code> : Ajouter un nouveau groupe.</li>
+                    <li><code>dsquery user</code> : Rechercher des utilisateurs dans AD.</li>
+                    <li><code>gpupdate /force</code> : Mettre à jour les stratégies de groupe.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Meilleures Pratiques</h2>
+                <ul>
+                    <li>Configurer des mots de passe forts et des politiques de verrouillage de compte.</li>
+                    <li>Mettre en place une hiérarchie de groupes et d’unités organisationnelles claire.</li>
+                    <li>Surveiller régulièrement les journaux d'événements pour détecter les activités suspectes.</li>
+                    <li>Planifier des sauvegardes régulières de l’Active Directory.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ressources Supplémentaires</h2>
+                <ul>
+                    <li><a href="https://docs.microsoft.com/fr-fr/windows-server/identity/active-directory-domain-services">Documentation officielle Active Directory</a></li>
+                    <li><a href="https://www.microsoft.com">Portail Microsoft</a></li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Configuration Active Directory. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

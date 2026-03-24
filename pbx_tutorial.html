@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Configuration et Gestion des Systèmes PBX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Configuration et Gestion des Systèmes PBX</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce guide explique comment configurer et gérer un système PBX (Private Branch Exchange) pour gérer efficacement les appels internes et externes dans une organisation.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Compréhension des bases de la téléphonie et des systèmes VoIP.</li>
+                    <li>Accès administrateur au serveur PBX.</li>
+                    <li>Logiciels nécessaires installés, tels qu’Asterisk ou FreePBX.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Étapes de Configuration</h2>
+                <h3>1. Installation du Logiciel PBX</h3>
+                <p>Assurez-vous que le logiciel PBX est correctement installé :</p>
+                <code>
+# Mettre à jour le système
+sudo apt update && sudo apt upgrade
+
+# Installer Asterisk (exemple pour Debian/Ubuntu)
+sudo apt install asterisk
+                </code>
+
+                <h3>2. Configuration des Extensions</h3>
+                <p>Ajoutez des extensions pour permettre aux utilisateurs de passer des appels :</p>
+                <code>
+# Éditer le fichier de configuration des extensions
+sudo nano /etc/asterisk/extensions.conf
+
+# Exemple de configuration
+dialplan {
+    context internal {
+        1001 => Dial(SIP/user1);
+        1002 => Dial(SIP/user2);
+    }
+}
+                </code>
+
+                <h3>3. Configuration des Trunks</h3>
+                <p>Configurez les trunks pour permettre les appels externes :</p>
+                <ul>
+                    <li>Ajoutez les informations du fournisseur SIP.</li>
+                    <li>Testez la connexion avec le fournisseur.</li>
+                </ul>
+
+                <h3>4. Configuration des Règles de Routage</h3>
+                <p>Définissez des règles pour router les appels vers les extensions ou les trunks appropriés :</p>
+                <code>
+# Exemple de routage
+[outbound]
+exten => _X.,1,Dial(SIP/${EXTEN}@provider)
+                </code>
+            </section>
+
+            <section>
+                <h2>Bonnes Pratiques</h2>
+                <ul>
+                    <li>Planifier des sauvegardes régulières des configurations PBX.</li>
+                    <li>Utiliser des mots de passe complexes pour les comptes SIP.</li>
+                    <li>Configurer un pare-feu pour protéger le serveur PBX.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Configuration et Gestion des Systèmes PBX. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

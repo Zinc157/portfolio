@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance et mise à jour d'un serveur Linux</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Maintenance et mise à jour d'un serveur Linux</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce guide vous fournira les outils et commandes nécessaires pour effectuer une maintenance efficace de votre serveur Linux, en assurant sa sécurité, sa performance et sa fiabilité.</p>
+            </section>
+
+            <section>
+                <h2>Outils de maintenance courants</h2>
+                <ul>
+                    <li><strong>htop :</strong> Surveillance des processus en temps réel.</li>
+                    <li><strong>df :</strong> Affiche l'espace disque disponible.</li>
+                    <li><strong>du :</strong> Analyse l'utilisation de l'espace disque par dossier.</li>
+                    <li><strong>journalctl :</strong> Consultez les journaux système.</li>
+                    <li><strong>top :</strong> Affiche les tâches en cours et la charge système.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Commandes pour les mises à jour</h2>
+                <ol>
+                    <li>
+                        <strong>Pour les systèmes basés sur Debian (Ubuntu, etc.) :</strong>
+                        <code>sudo apt update && sudo apt upgrade</code>
+                        <p>Mettez à jour la liste des paquets et appliquez les mises à jour disponibles.</p>
+                    </li>
+                    <li>
+                        <strong>Pour les systèmes basés sur Red Hat (CentOS, Fedora, etc.) :</strong>
+                        <code>sudo yum update</code> ou <code>sudo dnf update</code>
+                        <p>Mettez à jour les paquets et le système.</p>
+                    </li>
+                    <li>
+                        <strong>Mettre à jour le noyau Linux :</strong>
+                        <code>sudo apt install linux-generic</code> (Debian) ou <code>sudo yum install kernel</code> (Red Hat).</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Gestion des services</h2>
+                <p>Utilisez <code>systemctl</code> pour gérer les services :</p>
+                <ul>
+                    <li><code>sudo systemctl start [service]</code> : Démarrer un service.</li>
+                    <li><code>sudo systemctl stop [service]</code> : Arrêter un service.</li>
+                    <li><code>sudo systemctl restart [service]</code> : Redémarrer un service.</li>
+                    <li><code>sudo systemctl status [service]</code> : Vérifier l'état d'un service.</li>
+                    <li><code>sudo systemctl enable [service]</code> : Activer un service au démarrage.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Vérification et sauvegardes</h2>
+                <ul>
+                    <li><strong>Surveiller les journaux :</strong> Utilisez <code>journalctl -xe</code> pour diagnostiquer les erreurs.</li>
+                    <li><strong>Créer des sauvegardes :</strong> Configurez des sauvegardes régulières avec <code>rsync</code> ou des outils comme <code>timeshift</code>.</li>
+                    <li><strong>Testez les sauvegardes :</strong> Assurez-vous que vos sauvegardes sont utilisables en effectuant des restaurations périodiques.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ressources supplémentaires</h2>
+                <ul>
+                    <li><a href="https://linuxize.com/">Tutoriels Linux</a></li>
+                    <li><a href="https://ubuntu.com/server/docs">Documentation officielle Ubuntu Server</a></li>
+                    <li><a href="https://access.redhat.com/documentation/en-us/">Documentation Red Hat</a></li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Maintenance Linux. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

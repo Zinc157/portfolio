@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation de Linux</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Installation de Linux</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce tutoriel détaillé vous guidera pas à pas à travers toutes les étapes nécessaires pour installer une distribution Linux, telle qu'Ubuntu ou CentOS. Que vous soyez un débutant ou un administrateur expérimenté, ces instructions sont conçues pour vous aider à réussir votre installation.</p>
+            </section>
+
+            <section>
+                <h2>Pré-requis</h2>
+                <ul>
+                    <li>Un ordinateur avec un processeur 64 bits et au moins 2 Go de RAM.</li>
+                    <li>Un espace disque libre d'au moins 25 Go.</li>
+                    <li>Une clé USB d'au moins 4 Go pour l'installation.</li>
+                    <li>Un logiciel pour créer une clé USB bootable, comme Rufus ou BalenaEtcher.</li>
+                    <li>L'image ISO de la distribution Linux souhaitée, téléchargeable depuis le site officiel.</li>
+                    <li>Accès à Internet pour télécharger des mises à jour et des logiciels supplémentaires.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Étapes d'Installation</h2>
+                <ol>
+                    <li>
+                        <strong>Télécharger l'image ISO :</strong>
+                        <p>Accédez au site officiel de votre distribution Linux choisie, comme <a href="https://ubuntu.com/download">Ubuntu</a> ou <a href="https://www.centos.org/download/">CentOS</a>, et téléchargez l'image ISO correspondante.</p>
+                    </li>
+                    <li>
+                        <strong>Créer une clé USB bootable :</strong>
+                        <p>Insérez votre clé USB dans l'ordinateur. Ouvrez Rufus ou BalenaEtcher, sélectionnez l'image ISO téléchargée et la clé USB comme destination, puis démarrez le processus.</p>
+                    </li>
+                    <li>
+                        <strong>Configurer le BIOS/UEFI :</strong>
+                        <p>Redémarrez votre ordinateur et accédez au menu BIOS/UEFI (souvent en appuyant sur <code>F2</code>, <code>F12</code>, <code>Del</code>, ou <code>Esc</code>). Changez l'ordre de démarrage pour que la clé USB soit en premier.</p>
+                    </li>
+                    <li>
+                        <strong>Démarrer l'installation :</strong>
+                        <p>Démarrez à partir de la clé USB et suivez les instructions à l'écran. Voici les étapes principales :</p>
+                        <ul>
+                            <li>Choisir la langue de l'installation et le type de clavier.</li>
+                            <li>Configurer le réseau si nécessaire.</li>
+                            <li>Choisir le type d'installation : installation minimale ou complète.</li>
+                            <li>Créer des partitions manuellement ou utiliser les paramètres automatiques.</li>
+                            <li>Définir un nom d'utilisateur, un mot de passe et, si nécessaire, un mot de passe pour <code>root</code>.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Finaliser l'installation :</strong>
+                        <p>Une fois l'installation terminée, redémarrez votre ordinateur et retirez la clé USB pour démarrer sur votre nouveau système Linux.</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Post-installation</h2>
+                <p>Après l'installation, il est important de :</p>
+                <ul>
+                    <li>Mettre à jour le système en exécutant : <code>sudo apt update && sudo apt upgrade</code> (pour les systèmes basés sur Debian) ou <code>sudo yum update</code> (pour CentOS).</li>
+                    <li>Installer les pilotes nécessaires, notamment pour la carte graphique ou les périphériques spécifiques.</li>
+                    <li>Ajouter des logiciels comme des éditeurs de texte (<code>vim</code>, <code>nano</code>), des navigateurs web, et des outils de productivité.</li>
+                    <li>Configurer le pare-feu en utilisant <code>ufw</code> ou <code>firewalld</code>.</li>
+                    <li>Créer des sauvegardes régulières en utilisant des outils comme <code>rsync</code> ou <code>timeshift</code>.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Conseils et Astuces</h2>
+                <ul>
+                    <li>Apprenez les bases de la ligne de commande Linux pour une meilleure efficacité.</li>
+                    <li>Explorez le gestionnaire de paquets pour installer des logiciels supplémentaires (<code>apt</code>, <code>yum</code>, ou <code>dnf</code>).</li>
+                    <li>Activez les mises à jour automatiques pour garder votre système sécurisé.</li>
+                    <li>Participez à des forums et communautés pour obtenir de l'aide et des conseils.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ressources Supplémentaires</h2>
+                <ul>
+                    <li><a href="https://linuxcommand.org/">Introduction à la ligne de commande Linux</a></li>
+                    <li><a href="https://ubuntu.com/tutorials">Tutoriels officiels Ubuntu</a></li>
+                    <li><a href="https://www.centos.org/docs/">Documentation officielle CentOS</a></li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Installation de Linux. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

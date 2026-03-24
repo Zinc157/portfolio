@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Route Redistribution</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Route Redistribution</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>La redistribution des routes est une technique permettant l'intégration de multiples protocoles de routage dans un réseau. Elle assure une interopérabilité entre les protocoles et facilite la communication entre différentes parties d'un réseau utilisant des protocoles variés.</p>
+            </section>
+
+            <section>
+                <h2>Caractéristiques principales</h2>
+                <ul>
+                    <li>Permet de transférer des routes entre des protocoles comme OSPF, EIGRP, RIP et BGP.</li>
+                    <li>Offre une meilleure flexibilité dans la gestion des réseaux complexes.</li>
+                    <li>Peut nécessiter des filtres et des métriques pour éviter des boucles de routage.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fonctionnement</h2>
+                <ol>
+                    <li><strong>Sélection du protocole source :</strong> Identifier le protocole de routage contenant les routes à redistribuer.</li>
+                    <li><strong>Sélection du protocole cible :</strong> Choisir le protocole qui recevra les routes redistribuées.</li>
+                    <li><strong>Configuration des métriques :</strong> Définir des métriques appropriées pour les routes redistribuées.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Commandes pour la redistribution</h2>
+                <p>Voici quelques commandes courantes pour configurer la redistribution sur des routeurs Cisco :</p>
+                <code>
+# Redistribution d'OSPF vers EIGRP
+router eigrp 100
+redistribute ospf 1 metric 100000 100 255 1 1500
+
+# Redistribution d'EIGRP vers OSPF
+router ospf 1
+redistribute eigrp 100 subnets
+
+# Redistribution de RIP vers OSPF
+router ospf 1
+redistribute rip subnets
+
+# Appliquer un filtre pour limiter les routes redistribuées
+route-map FILTRE permit 10
+match ip address 10
+redistribute ospf 1 route-map FILTRE
+                </code>
+            </section>
+
+            <section>
+                <h2>Exemple de configuration</h2>
+                <code>
+# Redistribution entre OSPF et EIGRP avec des métriques personnalisées
+router eigrp 100
+redistribute ospf 1 metric 100000 100 255 1 1500
+
+router ospf 1
+redistribute eigrp 100 subnets
+
+# Vérification des routes redistribuées
+show ip route
+                </code>
+            </section>
+
+            <section>
+                <h2>Avantages et inconvénients</h2>
+                <h3>Avantages</h3>
+                <ul>
+                    <li>Permet l'interconnexion de réseaux utilisant différents protocoles de routage.</li>
+                    <li>Facilite la migration progressive d'un protocole à un autre.</li>
+                </ul>
+                <h3>Inconvénients</h3>
+                <ul>
+                    <li>Peut introduire des boucles de routage si elle n'est pas configurée correctement.</li>
+                    <li>Nécessite une attention particulière aux métriques et aux filtres pour éviter des problèmes de performance.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Route Redistribution. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

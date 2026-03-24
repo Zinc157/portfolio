@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse de Trafic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-left: 4px solid #ccc;
+            overflow-x: auto;
+        }
+        code {
+            color: #d63384;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Analyse de Trafic</h1>
+    </header>
+    <div class="container">
+        <p><strong>Analyse de trafic :</strong> Utilisation des outils de surveillance pour diagnostiquer et optimiser les performances des switches.</p>
+
+        <h3>Avantages de l'Analyse de Trafic</h3>
+        <ul>
+            <li><strong>Diagnostic des problèmes :</strong> Identifie les goulets d’étranglement et les anomalies réseau.</li>
+            <li><strong>Optimisation des performances :</strong> Permet d’ajuster les configurations pour un réseau plus performant.</li>
+            <li><strong>Surveillance proactive :</strong> Détecte les problèmes potentiels avant qu’ils n’affectent les utilisateurs.</li>
+        </ul>
+
+        <h3>Outils Courants pour l'Analyse de Trafic</h3>
+        <ul>
+            <li><strong>Wireshark :</strong> Capture et analyse les paquets réseau en temps réel.</li>
+            <li><strong>NetFlow (Cisco) :</strong> Fournit des informations détaillées sur les flux de trafic.</li>
+            <li><strong>iftop :</strong> Affiche les connexions réseau actives et leur consommation de bande passante.</li>
+        </ul>
+
+        <h3>Exemple d'Utilisation</h3>
+        <pre><code>
+# Capture de trafic avec Wireshark
+sudo wireshark
+
+# Surveillance des flux avec iftop
+sudo iftop -i eth0
+        </code></pre>
+
+        <h3>Vérification</h3>
+        <p>Pour vérifier l’état du trafic :</p>
+        <ul>
+            <li><strong>Wireshark :</strong> Analysez les paquets capturés pour diagnostiquer les problèmes.</li>
+            <li><strong>NetFlow :</strong> Utilisez les outils NetFlow pour des rapports détaillés sur les flux.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>L’analyse de trafic est essentielle pour maintenir des réseaux performants et fiables. En utilisant les bons outils, vous pouvez rapidement identifier et résoudre les problèmes, garantissant ainsi une expérience utilisateur optimale.</p>
+    </div>
+    <footer>
+        <p>&copy; 2025 Tutoriel Analyse de Trafic. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

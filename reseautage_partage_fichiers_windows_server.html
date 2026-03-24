@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réseautage et partage de fichiers sur Windows Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Réseautage et partage de fichiers sur Windows Server</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Le réseautage et le partage de fichiers dans un environnement Windows Server sont essentiels pour permettre aux utilisateurs d'accéder aux ressources et aux données partagées au sein d'un réseau d'entreprise. Ce guide vous accompagnera dans la configuration du réseau, du partage de fichiers et de la gestion des permissions pour sécuriser l'accès aux données.</p>
+            </section>
+
+            <section>
+                <h2>1. Configuration du réseau</h2>
+                <p>La configuration correcte du réseau sur un serveur Windows est fondamentale pour garantir une communication fluide et une gestion efficace des ressources.</p>
+                <ol>
+                    <li><strong>Configurer les interfaces réseau</strong> : Allez dans "Panneau de configuration" > "Centre Réseau et partage" > "Modifier les paramètres de la carte". Choisissez l'adaptateur réseau à configurer et faites un clic droit sur "Propriétés". Configurez les paramètres IP (statique ou dynamique via DHCP).</li>
+                    <li><strong>Configurer les paramètres DNS</strong> : Dans les propriétés de l'adaptateur réseau, configurez les serveurs DNS selon votre architecture (serveur DNS interne ou public).</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>2. Partage de fichiers</h2>
+                <p>Une fois le réseau configuré, vous pouvez activer le partage de fichiers sur le serveur.</p>
+                <ol>
+                    <li><strong>Activer le partage de fichiers</strong> : Ouvrez "Gestionnaire de serveur" > "Outils" > "Services de fichiers et de stockage". Sélectionnez "Partages" et créez un nouveau partage en spécifiant le chemin d'accès au dossier à partager.</li>
+                    <li><strong>Configurer les permissions</strong> : Clic droit sur le dossier partagé > "Propriétés" > "Partage" > "Avancé" > "Autorisations". Définissez les utilisateurs et groupes autorisés à accéder au partage avec les niveaux de permission appropriés (lecture, écriture, contrôle total).</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>3. Gestion des permissions de fichiers et dossiers</h2>
+                <p>Les permissions permettent de contrôler l'accès aux ressources partagées. Il existe deux types de permissions à configurer :</p>
+                <ul>
+                    <li><strong>Permissions NTFS</strong> : Elles sont utilisées pour contrôler l'accès aux fichiers et dossiers localement sur le serveur. Clic droit sur le fichier ou dossier > "Propriétés" > "Sécurité". Ajoutez ou modifiez des utilisateurs et groupes avec des niveaux de permission comme "Lecture", "Écriture", "Contrôle total", etc.</li>
+                    <li><strong>Permissions de partage</strong> : Elles sont utilisées pour contrôler l'accès aux ressources partagées sur le réseau. Allez dans "Propriétés" du dossier partagé > "Partage" > "Autorisations". Définissez les autorisations pour les groupes d'utilisateurs ou individus.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>4. Accès au partage de fichiers depuis un client</h2>
+                <p>Pour accéder au partage de fichiers à partir d'une machine cliente, suivez les étapes suivantes :</p>
+                <ol>
+                    <li><strong>Accéder via l'explorateur de fichiers</strong> : Sur le client, ouvrez l'explorateur de fichiers, tapez le chemin UNC du serveur, par exemple : \serveur\partage.</li>
+                    <li><strong>Authentification</strong> : Si des identifiants sont requis, entrez les informations d'identification de l'utilisateur autorisé.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>5. Sécurisation du partage de fichiers</h2>
+                <p>La sécurisation des partages de fichiers est essentielle pour empêcher l'accès non autorisé.</p>
+                <ul>
+                    <li><strong>Appliquer des groupes de sécurité</strong> : Limitez l'accès aux partages de fichiers en utilisant des groupes de sécurité Active Directory.</li>
+                    <li><strong>Activer la cryptographie SMB</strong> : Configurez le chiffrement SMB sur le serveur pour protéger les données transmises par le réseau.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>6. Bonnes pratiques pour le partage de fichiers</h2>
+                <ul>
+                    <li><strong>Utilisez des groupes de sécurité</strong> pour appliquer les permissions de manière centralisée.</li>
+                    <li><strong>Limitez l'accès aux partages</strong> en fonction des besoins réels des utilisateurs.</li>
+                    <li><strong>Surveillez les accès</strong> en utilisant les journaux d'événements pour détecter toute activité suspecte.</li>
+                    <li><strong>Appliquez le principe du moindre privilège</strong> pour garantir que les utilisateurs disposent uniquement des permissions nécessaires.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Réseautage et partage de fichiers sur Windows Server. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

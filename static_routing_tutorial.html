@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Static Routing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Static Routing</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Le routage statique (Static Routing) est une méthode où les routes sont configurées manuellement par un administrateur réseau. Cette méthode permet un contrôle précis des flux de données dans un réseau.</p>
+            </section>
+
+            <section>
+                <h2>Caractéristiques principales</h2>
+                <ul>
+                    <li>Les routes sont définies manuellement et restent fixes.</li>
+                    <li>Adapté aux petits réseaux ou aux environnements où les chemins changent rarement.</li>
+                    <li>Ne consomme pas de bande passante pour échanger des informations de routage.</li>
+                    <li>Facile à configurer pour des topologies simples.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fonctionnement</h2>
+                <ol>
+                    <li><strong>Définir les routes :</strong> Chaque route doit être configurée avec une destination et un next-hop.</li>
+                    <li><strong>Pas de mise à jour dynamique :</strong> Les changements dans le réseau nécessitent une mise à jour manuelle des routes.</li>
+                    <li><strong>Priorité :</strong> Les routes statiques peuvent avoir une priorité plus élevée que les routes dynamiques si configurées avec un coût inférieur.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Commandes de routage statique</h2>
+                <p>Voici quelques commandes courantes pour configurer le routage statique sur des routeurs Cisco :</p>
+                <code>
+ip route 192.168.1.0 255.255.255.0 192.168.0.1
+ip route 10.0.0.0 255.0.0.0 172.16.0.1
+show ip route
+                </code>
+            </section>
+
+            <section>
+                <h2>Exemple de configuration</h2>
+                <code>
+# Ajouter une route statique vers le réseau 192.168.1.0/24
+ip route 192.168.1.0 255.255.255.0 192.168.0.1
+
+# Ajouter une route par défaut
+ip route 0.0.0.0 0.0.0.0 192.168.0.254
+
+# Vérifier les routes configurées
+show ip route
+                </code>
+            </section>
+
+            <section>
+                <h2>Avantages et inconvénients</h2>
+                <h3>Avantages</h3>
+                <ul>
+                    <li>Simple à mettre en œuvre pour de petites topologies.</li>
+                    <li>Permet un contrôle total des routes par l'administrateur.</li>
+                    <li>Aucune utilisation de bande passante pour les protocoles de routage.</li>
+                </ul>
+                <h3>Inconvénients</h3>
+                <ul>
+                    <li>Non évolutif pour les grands réseaux.</li>
+                    <li>Maintenance manuelle en cas de modifications dans le réseau.</li>
+                    <li>Risque d'erreurs de configuration.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Static Routing. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

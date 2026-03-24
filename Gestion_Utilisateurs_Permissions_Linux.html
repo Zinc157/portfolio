@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des utilisateurs et permissions sur Linux</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            background-color: #2e2e2e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            color: #76c7c0;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gestion des utilisateurs et permissions sur Linux</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>La gestion des utilisateurs et des permissions est une compétence essentielle pour administrer un système Linux. Ce tutoriel explique les commandes et outils nécessaires pour gérer les utilisateurs et configurer les permissions de manière efficace.</p>
+            </section>
+
+            <section>
+                <h2>Gestion des utilisateurs</h2>
+                <h3>Créer un utilisateur</h3>
+                <p>Pour ajouter un nouvel utilisateur :</p>
+                <code>sudo adduser nom_utilisateur</code>
+                <h3>Supprimer un utilisateur</h3>
+                <p>Pour supprimer un utilisateur et son répertoire personnel :</p>
+                <code>sudo deluser --remove-home nom_utilisateur</code>
+                <h3>Modifier un utilisateur</h3>
+                <p>Pour changer des informations sur un utilisateur, utilisez :</p>
+                <code>sudo usermod -option nom_utilisateur</code>
+                <p>Exemple : Changer le nom d'utilisateur :</p>
+                <code>sudo usermod -l nouveau_nom ancien_nom</code>
+            </section>
+
+            <section>
+                <h2>Gestion des groupes</h2>
+                <h3>Créer un groupe</h3>
+                <code>sudo groupadd nom_groupe</code>
+                <h3>Ajouter un utilisateur à un groupe</h3>
+                <code>sudo usermod -aG nom_groupe nom_utilisateur</code>
+                <h3>Supprimer un groupe</h3>
+                <code>sudo groupdel nom_groupe</code>
+            </section>
+
+            <section>
+                <h2>Gestion des permissions</h2>
+                <h3>Afficher les permissions</h3>
+                <p>Pour voir les permissions d'un fichier ou d'un répertoire :</p>
+                <code>ls -l nom_fichier</code>
+                <h3>Changer les permissions</h3>
+                <p>Utilisez la commande <code>chmod</code> :</p>
+                <code>chmod mode nom_fichier</code>
+                <p>Exemple : Donner des permissions de lecture, écriture et exécution au propriétaire :</p>
+                <code>chmod 700 nom_fichier</code>
+                <h3>Changer le propriétaire</h3>
+                <p>Pour changer le propriétaire d'un fichier ou répertoire :</p>
+                <code>sudo chown utilisateur:group nom_fichier</code>
+            </section>
+
+            <section>
+                <h2>Conseils pratiques</h2>
+                <ul>
+                    <li>Utilisez <code>sudo</code> pour les commandes administratives.</li>
+                    <li>Créez des groupes pour simplifier la gestion des permissions pour plusieurs utilisateurs.</li>
+                    <li>Apprenez à utiliser les outils comme <code>usermod</code> et <code>groupmod</code>.</li>
+                    <li>Évitez d'utiliser le compte root directement pour limiter les erreurs critiques.</li>
+                </ul>
+            </section>
+
+            <footer>
+                <p>&copy; 2025 Tutoriel Linux - Gestion des utilisateurs et permissions</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

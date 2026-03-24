@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structure Sémantique en HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Structure Sémantique</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>La structure sémantique en HTML repose sur l'utilisation de balises spécifiques qui donnent un sens clair et précis au contenu d'une page web. Ces balises améliorent l'accessibilité et le référencement (SEO).</p>
+            </section>
+
+            <section>
+                <h2>Principales Balises Sémantiques</h2>
+                <ul>
+                    <li><code>&lt;header&gt;</code> : Définit un en-tête pour un document ou une section.</li>
+                    <li><code>&lt;footer&gt;</code> : Contient les informations de pied de page.</li>
+                    <li><code>&lt;article&gt;</code> : Représente un contenu autonome comme un article de blog.</li>
+                    <li><code>&lt;section&gt;</code> : Regroupe des contenus thématiques ou des sections.</li>
+                    <li><code>&lt;aside&gt;</code> : Contient des informations secondaires ou complémentaires.</li>
+                    <li><code>&lt;nav&gt;</code> : Définit une zone de navigation.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Exemple de Structure Sémantique</h2>
+                <code>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemple de Structure Sémantique</title>
+</head>
+<body>
+    <header>
+        <h1>Mon Site Web</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Section Principale</h2>
+        <article>
+            <h3>Article 1</h3>
+            <p>Ceci est un exemple d'article.</p>
+        </article>
+    </section>
+    <aside>
+        <h3>Informations Complémentaires</h3>
+        <p>Contenu additionnel à afficher sur le côté.</p>
+    </aside>
+    <footer>
+        <p>&copy; 2025 Mon Site Web</p>
+    </footer>
+</body>
+</html>
+                </code>
+            </section>
+
+            <section>
+                <h2>Avantages de la Structure Sémantique</h2>
+                <ul>
+                    <li>Amélioration de l'accessibilité pour les lecteurs d'écran.</li>
+                    <li>Meilleure compréhension du contenu par les moteurs de recherche.</li>
+                    <li>Organisation claire et logique du contenu.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Structure Sémantique. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

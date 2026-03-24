@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel : Mise en œuvre du Spanning Tree Protocol (STP)</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        h1, h2, h3 { color: #333; }
+        h1 { text-align: center; }
+        pre { background: #f4f4f4; padding: 10px; border: 1px solid #ddd; overflow-x: auto; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        hr { margin: 20px 0; border: none; border-top: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Tutoriel : Mise en œuvre du Spanning Tree Protocol (STP)</h1>
+    
+    <h2>Introduction</h2>
+    <p>Le Spanning Tree Protocol (STP) est un protocole réseau essentiel conçu pour prévenir les boucles dans un réseau Ethernet commuté. Les boucles peuvent provoquer une surcharge des switches et des interruptions de service. STP permet à un réseau de rester redondant tout en désactivant dynamiquement les chemins redondants inutilisés.</p>
+    <p>Dans ce tutoriel, nous allons expliquer les concepts de base de STP, ainsi que fournir des étapes pour configurer ce protocole sur des switches.</p>
+    
+    <hr>
+    
+    <h2>Concepts de base</h2>
+    <ul>
+        <li><strong>STP (Spanning Tree Protocol)</strong> : STP crée une topologie logique sans boucle en désactivant certains liens redondants tout en maintenant la redondance pour la tolérance aux pannes.</li>
+        <li><strong>Bridge ID</strong> : Un identifiant unique pour chaque switch, composé d'une priorité (valeur par défaut : 32768) et de l'adresse MAC du switch.</li>
+        <li><strong>Root Bridge</strong> : Le switch élu comme point central de la topologie STP. Tous les chemins vers le Root Bridge sont calculés avec le coût le plus bas.</li>
+        <li><strong>Port States</strong> : STP utilise plusieurs états de port : 
+            <ul>
+                <li><strong>Blocking</strong> : Aucun trafic de données n'est transmis.</li>
+                <li><strong>Listening</strong> : Le switch écoute les BPDU (Bridge Protocol Data Units).</li>
+                <li><strong>Learning</strong> : Le switch apprend les adresses MAC.</li>
+                <li><strong>Forwarding</strong> : Le trafic de données est transmis.</li>
+                <li><strong>Disabled</strong> : Le port est administrativement désactivé.</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Prérequis</h2>
+    <ul>
+        <li>Switches compatibles avec STP (Cisco, HP, etc.).</li>
+        <li>Connaissances de base sur les VLANs et les topologies réseaux.</li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Étapes pour configurer STP</h2>
+    
+    <h3>Exemple avec des switches Cisco (IOS)</h3>
+    <ol>
+        <li><strong>Vérifier l'état actuel de STP :</strong>
+            <pre>Switch> enable
+Switch# show spanning-tree</pre>
+        </li>
+        <li><strong>Configurer la priorité du Root Bridge :</strong> Pour élire un switch comme Root Bridge, configurez une priorité inférieure (par exemple, 4096) :
+            <pre>Switch# configure terminal
+Switch(config)# spanning-tree vlan 1 priority 4096</pre>
+        </li>
+        <li><strong>Configurer les ports STP :</strong>
+            <ul>
+                <li><strong>Définir un port en mode Edge (PortFast)</strong> : Ce mode est utilisé pour les ports connectés à des hôtes finaux, ce qui permet de réduire le temps de convergence :
+                    <pre>Switch(config)# interface FastEthernet0/1
+Switch(config-if)# spanning-tree portfast</pre>
+                </li>
+                <li><strong>Activer BPDU Guard</strong> : Pour protéger les ports Edge contre les connexions non autorisées de switches :
+                    <pre>Switch(config-if)# spanning-tree bpduguard enable</pre>
+                </li>
+            </ul>
+        </li>
+        <li><strong>Configurer la redondance et les chemins de backup :</strong> Si vous utilisez plusieurs liens redondants, assurez-vous que STP bloque les chemins supplémentaires pour éviter les boucles.</li>
+        <li><strong>Vérifier la configuration :</strong>
+            <pre>Switch# show spanning-tree detail</pre>
+        </li>
+    </ol>
+    
+    <hr>
+    
+    <h2>Commandes supplémentaires utiles</h2>
+    <ul>
+        <li><strong>Modifier le coût d'un port :</strong> Pour influencer le choix du chemin STP :
+            <pre>Switch(config)# interface FastEthernet0/2
+Switch(config-if)# spanning-tree cost 19</pre>
+        </li>
+        <li><strong>Modifier la priorité d'un port :</strong> Pour préférer un port à un autre :
+            <pre>Switch(config)# interface FastEthernet0/2
+Switch(config-if)# spanning-tree port-priority 64</pre>
+        </li>
+        <li><strong>Activer Rapid Spanning Tree Protocol (RSTP) :</strong> Pour une convergence plus rapide :
+            <pre>Switch(config)# spanning-tree mode rapid-pvst</pre>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Conclusion</h2>
+    <p>Le Spanning Tree Protocol est indispensable pour garantir un réseau commuté sans boucle tout en maintenant une redondance efficace. En suivant les étapes ci-dessus, vous pouvez configurer STP pour assurer une topologie réseau stable et performante. Adaptez les commandes à vos besoins spécifiques et consultez la documentation de votre équipement pour des configurations avancées.</p>
+</body>
+</html>

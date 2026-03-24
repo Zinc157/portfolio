@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QoS (Quality of Service)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-left: 4px solid #ccc;
+            overflow-x: auto;
+        }
+        code {
+            color: #d63384;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>QoS (Quality of Service)</h1>
+    </header>
+    <div class="container">
+        <p><strong>QoS (Quality of Service) :</strong> Mise en place de politiques pour gérer et prioriser les flux de données critiques dans les réseaux.</p>
+
+        <h3>Avantages de QoS</h3>
+        <ul>
+            <li><strong>Priorisation :</strong> Assure que les applications critiques reçoivent la bande passante nécessaire.</li>
+            <li><strong>Réduction de la latence :</strong> Particulièrement utile pour les applications en temps réel comme la voix et la vidéo.</li>
+            <li><strong>Meilleure utilisation des ressources :</strong> Optimise l’allocation de la bande passante sur le réseau.</li>
+        </ul>
+
+        <h3>Configuration de QoS</h3>
+        <pre><code>
+class-map match-any VoIP
+  match protocol rtp
+
+policy-map Prioritize-VoIP
+  class VoIP
+    priority percent 30
+
+interface GigabitEthernet1/0/1
+  service-policy output Prioritize-VoIP
+        </code></pre>
+
+        <h3>Vérification</h3>
+        <p>Pour vérifier le fonctionnement de la QoS :</p>
+        <ul>
+            <li><strong>Cisco :</strong> Utilisez la commande <code>show policy-map interface</code>.</li>
+            <li><strong>Linux :</strong> Utilisez la commande <code>tc -s qdisc</code> pour afficher les statistiques de la QoS.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>QoS garantit que les applications critiques reçoivent les ressources nécessaires pour fonctionner de manière optimale. En appliquant des politiques adaptées, vous pouvez améliorer considérablement les performances globales de votre réseau.</p>
+    </div>
+    <footer>
+        <p>&copy; 2025 Tutoriel QoS. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

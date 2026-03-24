@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Installation Serveur VoIP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Installation d’un Serveur VoIP</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce guide fournit une méthode complète pour installer un serveur VoIP en utilisant des logiciels tels qu’Asterisk ou FreePBX.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Un serveur ou une machine virtuelle avec un système d’exploitation compatible (par ex. Linux).</li>
+                    <li>Accès Internet pour télécharger les paquets nécessaires.</li>
+                    <li>Connaissance de base en administration système et réseau.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Étapes d’installation</h2>
+                <h3>1. Installation des dépendances</h3>
+                <p>Avant d’installer le serveur VoIP, assurez-vous que toutes les dépendances sont installées :</p>
+                <code>
+# Mettre à jour le système
+sudo apt update && sudo apt upgrade -y
+
+# Installer les paquets requis
+sudo apt install -y build-essential wget curl libncurses5-dev libssl-dev libxml2-dev
+                </code>
+
+                <h3>2. Installation d’Asterisk</h3>
+                <p>Téléchargez et installez Asterisk à partir des sources :</p>
+                <code>
+# Télécharger la dernière version d’Asterisk
+cd /usr/src/
+wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-XX.X.X.tar.gz
+
+# Extraire les fichiers et compiler
+tar -xvf asterisk-XX.X.X.tar.gz
+cd asterisk-XX.X.X
+./configure
+make
+sudo make install
+                </code>
+
+                <h3>3. Configuration d’Asterisk</h3>
+                <p>Modifiez les fichiers de configuration pour adapter le serveur à vos besoins :</p>
+                <code>
+# Exemple de configuration SIP
+sudo nano /etc/asterisk/sip.conf
+
+[general]
+context=default
+allowguest=no
+defaultuser=admin
+bindport=5060
+                </code>
+
+                <h3>4. Installation de FreePBX (optionnel)</h3>
+                <p>FreePBX fournit une interface graphique pour gérer Asterisk :</p>
+                <code>
+# Installer les paquets requis pour FreePBX
+sudo apt install -y apache2 mariadb-server php php-mysql php-mbstring
+
+# Télécharger et configurer FreePBX
+cd /usr/src/
+wget http://mirror.freepbx.org/freepbx-XX.X.tar.gz
+tar -xvf freepbx-XX.X.tar.gz
+cd freepbx-XX.X
+./install
+                </code>
+            </section>
+
+            <section>
+                <h2>Tests et Validation</h2>
+                <p>Vérifiez que le serveur est opérationnel :</p>
+                <ul>
+                    <li>Lancer le service Asterisk : <code>sudo systemctl start asterisk</code></li>
+                    <li>Tester un appel interne entre deux extensions SIP.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Bonnes pratiques</h2>
+                <ul>
+                    <li>Changer les mots de passe par défaut après installation.</li>
+                    <li>Activer les journaux pour surveiller l’activité.</li>
+                    <li>Mettre à jour régulièrement les logiciels pour corriger les vulnérabilités.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Installation Serveur VoIP. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

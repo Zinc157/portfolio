@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel EIGRP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : EIGRP (Enhanced Interior Gateway Routing Protocol)</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Le Enhanced Interior Gateway Routing Protocol (EIGRP) est un protocole de routage avancé développé par Cisco. Il est conçu pour fournir un routage rapide et efficace dans des réseaux de grande taille, tout en minimisant l'utilisation de la bande passante.</p>
+            </section>
+
+            <section>
+                <h2>Caractéristiques principales</h2>
+                <ul>
+                    <li>Utilise une métrique composite basée sur la bande passante, le délai, la fiabilité et la charge.</li>
+                    <li>Prend en charge les routes égales et inégales pour un équilibrage de charge flexible.</li>
+                    <li>Utilise des mises à jour partielles et déclenchées pour minimiser la bande passante consommée.</li>
+                    <li>Prend en charge les adresses IPv4 et IPv6.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fonctionnement</h2>
+                <ol>
+                    <li><strong>Établissement de voisinage :</strong> Les routeurs EIGRP échangent des messages Hello pour établir des relations de voisinage.</li>
+                    <li><strong>Calcul de la table topologique :</strong> Chaque routeur construit une table contenant toutes les routes connues et leurs métriques.</li>
+                    <li><strong>Choix des meilleures routes :</strong> Les routes avec la métrique la plus faible sont installées dans la table de routage.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Commandes EIGRP</h2>
+                <p>Voici quelques commandes courantes pour configurer EIGRP sur des routeurs Cisco :</p>
+                <code>
+# Activer EIGRP
+router eigrp 100
+
+# Configurer les réseaux participant à EIGRP
+network 192.168.1.0 0.0.0.255
+network 10.0.0.0 0.255.255.255
+
+# Spécifier une métrique facultative (optionnel)
+bandwidth 100000
+
+# Vérifier les routes EIGRP
+show ip route eigrp
+                </code>
+            </section>
+
+            <section>
+                <h2>Exemple de configuration</h2>
+                <code>
+# Activer le protocole EIGRP
+router eigrp 100
+
+# Définir les réseaux
+network 192.168.1.0 0.0.0.255
+network 10.0.0.0 0.255.255.255
+
+# Ajuster les métriques
+bandwidth 100000
+
+# Vérifier les voisins EIGRP
+show ip eigrp neighbors
+                </code>
+            </section>
+
+            <section>
+                <h2>Avantages et inconvénients</h2>
+                <h3>Avantages</h3>
+                <ul>
+                    <li>Convergence rapide grâce à l'utilisation de la technologie DUAL (Diffusing Update Algorithm).</li>
+                    <li>Équilibrage de charge flexible entre routes égales et inégales.</li>
+                    <li>Utilisation efficace de la bande passante grâce aux mises à jour partielles.</li>
+                </ul>
+                <h3>Inconvénients</h3>
+                <ul>
+                    <li>Propriétaire de Cisco, limitant son utilisation dans les environnements multi-fournisseurs.</li>
+                    <li>Complexité accrue par rapport à d'autres protocoles.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel EIGRP. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

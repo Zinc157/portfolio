@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel : Configuration de liens trunk</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        h1, h2, h3 { color: #333; }
+        h1 { text-align: center; }
+        pre { background: #f4f4f4; padding: 10px; border: 1px solid #ddd; overflow-x: auto; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        hr { margin: 20px 0; border: none; border-top: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Tutoriel : Configuration de liens trunk pour le transport des VLANs entre switches</h1>
+    
+    <h2>Introduction</h2>
+    <p>Le trunking est une technique utilisée pour permettre le transport des informations de plusieurs VLANs sur une même liaison entre deux switches. Cela est essentiel dans un réseau où plusieurs VLANs coexistent, car cela garantit que les communications entre les VLANs restent isolées tout en transitant efficacement par un lien commun.</p>
+    <p>Dans ce tutoriel, nous allons expliquer les concepts de base du trunking et fournir des étapes pratiques pour configurer des liens trunk sur des switches.</p>
+    
+    <hr>
+    
+    <h2>Concepts de base</h2>
+    <ul>
+        <li><strong>VLAN (Virtual Local Area Network)</strong> : Un VLAN permet de segmenter un réseau physique en plusieurs réseaux logiques indépendants.</li>
+        <li><strong>Trunk</strong> : Un lien trunk est une connexion entre deux switches (ou entre un switch et un routeur) qui transporte des trames provenant de plusieurs VLANs.</li>
+        <li><strong>802.1Q</strong> : C'est le standard utilisé pour insérer une balise VLAN dans une trame Ethernet. Cette balise identifie le VLAN d'origine de chaque trame.</li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Prérequis</h2>
+    <ul>
+        <li>Deux switches configurables (Cisco, HP, Juniper, etc.).</li>
+        <li>Les VLANs doivent déjà être créés sur les switches.</li>
+        <li>Une interface physique ou logique pour configurer le lien trunk.</li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Étapes pour configurer un lien trunk</h2>
+    
+    <h3>Exemple avec des switches Cisco (IOS)</h3>
+    <ol>
+        <li><strong>Configurer les VLANs sur chaque switch :</strong>
+            <pre>Switch> enable
+Switch# configure terminal
+Switch(config)# vlan 10
+Switch(config-vlan)# name VLAN10
+Switch(config-vlan)# exit
+Switch(config)# vlan 20
+Switch(config-vlan)# name VLAN20
+Switch(config-vlan)# exit</pre>
+        </li>
+        <li><strong>Attribuer les ports aux VLANs (optionnel) :</strong> Si nécessaire, configurez des ports d'accès pour chaque VLAN :
+            <pre>Switch(config)# interface FastEthernet0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10
+Switch(config-if)# exit
+
+Switch(config)# interface FastEthernet0/2
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 20
+Switch(config-if)# exit</pre>
+        </li>
+        <li><strong>Configurer un lien trunk :</strong> Sélectionnez les ports reliant les deux switches et configurez-les en mode trunk :
+            <pre>Switch(config)# interface FastEthernet0/24
+Switch(config-if)# switchport mode trunk
+Switch(config-if)# switchport trunk encapsulation dot1q
+Switch(config-if)# exit</pre>
+        </li>
+        <li><strong>Vérifier la configuration :</strong>
+            <ul>
+                <li>Pour vérifier que le port est en mode trunk :
+                    <pre>Switch# show interfaces FastEthernet0/24 switchport</pre>
+                </li>
+                <li>Pour vérifier les VLANs autorisés sur le trunk :
+                    <pre>Switch# show running-config</pre>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    
+    <hr>
+    
+    <h2>Commandes supplémentaires utiles</h2>
+    <ul>
+        <li><strong>Restreindre les VLANs autorisés sur le trunk :</strong>
+            <pre>Switch(config-if)# switchport trunk allowed vlan 10,20</pre>
+        </li>
+        <li><strong>Configurer un VLAN natif (non tagué) :</strong>
+            <pre>Switch(config-if)# switchport trunk native vlan 1</pre>
+        </li>
+        <li><strong>Dépannage :</strong>
+            <ul>
+                <li>Vérifiez l’état des VLANs sur le switch :
+                    <pre>Switch# show vlan brief</pre>
+                </li>
+                <li>Vérifiez l’état des trunks :
+                    <pre>Switch# show interfaces trunk</pre>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Conclusion</h2>
+    <p>Le trunking est une fonctionnalité essentielle pour transporter plusieurs VLANs entre les switches, permettant une segmentation réseau logique tout en optimisant l’utilisation des liens physiques. En suivant les étapes ci-dessus, vous pouvez configurer efficacement un lien trunk entre vos switches et assurer une connectivité VLAN robuste et sécurisée.</p>
+    <p>N'hésitez pas à adapter les commandes en fonction de votre équipement réseau ou à consulter la documentation de votre fabricant pour des ajustements spécifiques.</p>
+</body>
+</html>

@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel HTML5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : HTML5</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>HTML5 est la dernière version majeure du langage HTML, offrant de nouvelles balises et fonctionnalités pour structurer et présenter des contenus modernes et accessibles sur le web.</p>
+            </section>
+
+            <section>
+                <h2>Nouvelles Balises HTML5</h2>
+                <ul>
+                    <li><code>&lt;header&gt;</code> : Définit un en-tête pour un document ou une section.</li>
+                    <li><code>&lt;article&gt;</code> : Représente un contenu autonome.</li>
+                    <li><code>&lt;section&gt;</code> : Définit une section dans un document.</li>
+                    <li><code>&lt;nav&gt;</code> : Spécifie des liens de navigation.</li>
+                    <li><code>&lt;footer&gt;</code> : Définit un pied de page pour un document ou une section.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Exemple de Structure avec HTML5</h2>
+                <code>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemple HTML5</title>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur mon site</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Article Principal</h2>
+        <article>
+            <p>Ceci est un article de démonstration.</p>
+        </article>
+    </section>
+    <footer>
+        <p>&copy; 2025 Mon Site Web</p>
+    </footer>
+</body>
+</html>
+                </code>
+            </section>
+
+            <section>
+                <h2>Avantages de HTML5</h2>
+                <ul>
+                    <li>Amélioration de l'accessibilité et de la sémantique.</li>
+                    <li>Meilleure prise en charge des contenus multimédias grâce à <code>&lt;audio&gt;</code> et <code>&lt;video&gt;</code>.</li>
+                    <li>Optimisation pour les appareils mobiles avec des balises adaptatives.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel HTML5. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

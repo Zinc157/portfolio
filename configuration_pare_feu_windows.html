@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration d'un Pare-feu sous Windows</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Configuration d'un Pare-feu sous Windows</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>La configuration d'un pare-feu est essentielle pour protéger un système Windows contre les menaces. Ce tutoriel explique comment créer et gérer des règles pour autoriser ou bloquer le trafic réseau.</p>
+            </section>
+
+            <section>
+                <h2>Étapes de Configuration</h2>
+                <p>Voici les étapes pour configurer un pare-feu sous Windows :</p>
+                <ol>
+                    <li>Accéder au pare-feu via le Panneau de configuration ou les Paramètres Windows.</li>
+                    <li>Créer des règles pour le trafic entrant et sortant.</li>
+                    <li>Tester les règles pour vérifier leur bon fonctionnement.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Exemple de Configuration</h2>
+                <p>Configuration d'une règle pour autoriser un port spécifique :</p>
+                <code>
+1. Ouvrez "Paramètres Windows" > "Pare-feu Windows avec sécurité avancée".
+2. Cliquez sur "Règles de trafic entrant" dans le panneau de gauche.
+3. Sélectionnez "Nouvelle règle..." dans le panneau de droite.
+4. Choisissez "Port" comme type de règle.
+5. Spécifiez le protocole (TCP ou UDP) et le numéro de port (par exemple, 80 pour HTTP).
+6. Choisissez "Autoriser la connexion".
+7. Donnez un nom à la règle (par exemple, "Autoriser HTTP") et cliquez sur Terminer.
+                </code>
+            </section>
+
+            <section>
+                <h2>Conseils de Sécurité</h2>
+                <p>Pour garantir la sécurité de votre pare-feu :</p>
+                <ul>
+                    <li>Limiter les règles aux IP de confiance.</li>
+                    <li>Utiliser des journaux pour surveiller les activités suspectes.</li>
+                    <li>Désactiver les règles obsolètes ou inutilisées.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Configuration d'un Pare-feu sous Windows. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

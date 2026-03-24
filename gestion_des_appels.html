@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Gestion des appels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Gestion des appels</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Dans ce tutoriel, nous aborderons la mise en place de fonctionnalités telles que la gestion des appels entrants et sortants, le transfert d’appel, la messagerie vocale, et l’automatisation des services. Ces fonctionnalités permettent une communication professionnelle et efficace dans une organisation.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Un système PBX configuré (tel qu’Asterisk ou 3CX).</li>
+                    <li>Accès administratif au système PBX.</li>
+                    <li>Connaissance des besoins spécifiques de votre organisation en matière de gestion des appels.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Étapes de Configuration</h2>
+                <h3>1. Configuration des Appels Entrants</h3>
+                <p>Pour gérer les appels entrants, configurez les règles de routage :</p>
+                <code>
+# Exemple de règle pour les appels entrants
+[entrants]
+exten => 1234,1,Answer()
+exten => 1234,2,Dial(SIP/1001)
+exten => 1234,3,Voicemail(1001)
+                </code>
+
+                <h3>2. Configuration des Appels Sortants</h3>
+                <p>Définissez les règles pour les appels sortants en fonction des besoins :</p>
+                <code>
+# Exemple de règle pour les appels sortants
+[sortants]
+exten => _X.,1,Dial(SIP/${EXTEN}@provider)
+                </code>
+
+                <h3>3. Mise en Place du Transfert d’Appel</h3>
+                <p>Configurez le transfert d’appel pour rediriger les appels vers une autre extension :</p>
+                <code>
+# Exemple de transfert d’appel
+exten => 1001,1,Dial(SIP/1002,20)
+exten => 1001,n,Voicemail(1001)
+                </code>
+
+                <h3>4. Configuration de la Messagerie Vocale</h3>
+                <p>Ajoutez une messagerie vocale pour les utilisateurs :</p>
+                <code>
+# Exemple de configuration de messagerie vocale
+[voicemail]
+1001 => 1234,Utilisateur1,user1@example.com
+                </code>
+
+                <h3>5. Automatisation des Services</h3>
+                <p>Ajoutez un menu vocal interactif (IVR) :</p>
+                <code>
+# Exemple de menu IVR
+[ivr_menu]
+exten => s,1,Answer()
+exten => s,n,Background(welcome_message)
+exten => 1,1,Dial(SIP/1001)
+exten => 2,1,Dial(SIP/1002)
+                </code>
+            </section>
+
+            <section>
+                <h2>Bonnes Pratiques</h2>
+                <ul>
+                    <li>Testez toutes les fonctionnalités après configuration.</li>
+                    <li>Documentez les règles et paramètres appliqués.</li>
+                    <li>Assurez-vous que les mots de passe des boîtes vocales et des extensions sont sécurisés.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Gestion des appels. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

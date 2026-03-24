@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Quality of Service (QoS)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Quality of Service (QoS) en VoIP</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce tutoriel explique comment configurer Quality of Service (QoS) pour prioriser le trafic VoIP, garantissant ainsi des communications vocales claires et sans interruptions.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Connaissances de base en gestion de réseaux.</li>
+                    <li>Un routeur ou un switch prenant en charge la configuration QoS.</li>
+                    <li>Accès administratif à l’équipement réseau.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Configuration de QoS</h2>
+                <h3>1. Identifier le trafic VoIP</h3>
+                <p>Pour appliquer QoS, il est crucial de distinguer le trafic VoIP des autres types de données. Cela peut se faire en identifiant :</p>
+                <ul>
+                    <li>Les adresses IP des équipements VoIP.</li>
+                    <li>Les ports utilisés (par exemple, SIP utilise le port 5060).</li>
+                </ul>
+
+                <h3>2. Appliquer les politiques QoS</h3>
+                <h4>Exemple de configuration sur un routeur Cisco :</h4>
+                <code>
+# Définir une classe pour le trafic VoIP
+class-map match-any VoIP
+ match protocol sip
+ match protocol rtp
+
+# Créer une politique QoS
+policy-map QoS-Policy
+ class VoIP
+  priority percent 70
+
+# Appliquer la politique à une interface
+interface GigabitEthernet0/1
+ service-policy output QoS-Policy
+                </code>
+            </section>
+
+            <section>
+                <h2>Vérification et surveillance</h2>
+                <ul>
+                    <li>Utiliser <code>show policy-map interface</code> pour vérifier l’application des règles QoS.</li>
+                    <li>Contrôler les performances réseau avec des outils comme Wireshark pour s’assurer que le trafic VoIP est priorisé.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Bonnes pratiques</h2>
+                <p>Pour une configuration QoS efficace, suivez ces recommandations :</p>
+                <ul>
+                    <li>Segmentez le trafic VoIP sur un VLAN dédié pour une meilleure gestion.</li>
+                    <li>Effectuez des tests réguliers pour ajuster les priorités si nécessaire.</li>
+                    <li>Assurez-vous que tous les équipements réseau supportent et appliquent QoS.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Quality of Service (QoS). Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

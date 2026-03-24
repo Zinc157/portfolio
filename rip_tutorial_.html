@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel RIP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : RIP (Routing Information Protocol)</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Le Routing Information Protocol (RIP) est un protocole de routage dynamique basé sur la distance. Il est principalement utilisé pour déterminer les routes dans les petits réseaux en utilisant une métrique simple : le nombre de sauts.</p>
+            </section>
+
+            <section>
+                <h2>Caractéristiques principales</h2>
+                <ul>
+                    <li>Utilise une métrique basée sur le nombre de sauts (hops).</li>
+                    <li>Distance maximale : 15 sauts (16 indique une route inatteignable).</li>
+                    <li>Met à jour les routes toutes les 30 secondes.</li>
+                    <li>Convient pour les réseaux simples ou de petite taille.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fonctionnement</h2>
+                <ol>
+                    <li><strong>Annonce périodique :</strong> Les routeurs RIP partagent leurs tables de routage avec leurs voisins toutes les 30 secondes.</li>
+                    <li><strong>Mise à jour :</strong> Les tables de routage sont ajustées en fonction des informations reçues, en choisissant les routes avec le moins de sauts.</li>
+                    <li><strong>Limite :</strong> Toute route dépassant 15 sauts est marquée comme inatteignable.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Commandes RIP</h2>
+                <p>Voici quelques commandes courantes pour configurer RIP sur des routeurs Cisco :</p>
+                <code>
+# Activer RIP
+router rip
+
+# Spécifier la version de RIP
+version 2
+
+# Définir les réseaux participant au routage RIP
+network 192.168.1.0
+network 10.0.0.0
+
+# Vérifier les routes RIP
+show ip route rip
+                </code>
+            </section>
+
+            <section>
+                <h2>Exemple de configuration</h2>
+                <code>
+# Activer le protocole RIP
+router rip
+
+# Utiliser la version 2 de RIP
+version 2
+
+# Définir les réseaux
+network 192.168.1.0
+network 10.0.0.0
+
+# Vérifier les routes RIP configurées
+show ip route rip
+                </code>
+            </section>
+
+            <section>
+                <h2>Avantages et inconvénients</h2>
+                <h3>Avantages</h3>
+                <ul>
+                    <li>Simple à configurer et à comprendre.</li>
+                    <li>Convient pour les petits réseaux.</li>
+                    <li>Supporté par de nombreux équipements réseau.</li>
+                </ul>
+                <h3>Inconvénients</h3>
+                <ul>
+                    <li>Non adapté aux grands réseaux en raison de la limite de 15 sauts.</li>
+                    <li>Convergence lente comparée à d'autres protocoles.</li>
+                    <li>Peut générer une utilisation inutile de la bande passante en raison des annonces périodiques.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel RIP. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

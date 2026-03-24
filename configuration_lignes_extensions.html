@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Configuration des lignes et des extensions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Configuration des lignes et des extensions</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Dans ce tutoriel, nous aborderons la création et la gestion des lignes téléphoniques et des extensions internes dans les systèmes PBX. Ces configurations sont essentielles pour une communication fluide et efficace au sein de votre organisation.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Un système PBX fonctionnel (tel qu’Asterisk ou 3CX).</li>
+                    <li>Accès administratif au système PBX.</li>
+                    <li>Connaissance des besoins en numérotation et en routage des appels de votre organisation.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Étapes de Configuration</h2>
+                <h3>1. Création d’une Ligne Téléphonique</h3>
+                <p>Pour créer une ligne téléphonique, accédez à la configuration des lignes dans votre interface PBX et ajoutez une nouvelle entrée :</p>
+                <code>
+# Exemple pour Asterisk
+[lignetel1]
+type=friend
+username=lignetel1
+secret=motdepasse
+host=dynamic
+context=internal
+                </code>
+
+                <h3>2. Configuration des Extensions</h3>
+                <p>Ajoutez des extensions pour chaque utilisateur :</p>
+                <code>
+# Exemple de configuration d’extension
+[1001]
+type=friend
+username=1001
+secret=motdepasseutilisateur
+host=dynamic
+context=internal
+                </code>
+
+                <h3>3. Définition des Groupes d’Appels</h3>
+                <p>Si plusieurs utilisateurs partagent une même ligne, configurez un groupe d’appels :</p>
+                <code>
+# Exemple de groupe d’appels
+[appel_groupe1]
+members=1001,1002,1003
+ring_strategy=simultaneous
+                </code>
+
+                <h3>4. Test des Lignes et Extensions</h3>
+                <p>Effectuez des tests pour vérifier que les lignes et extensions fonctionnent correctement :</p>
+                <code>
+# Commande pour vérifier les extensions dans Asterisk
+asterisk -rx "sip show peers"
+                </code>
+
+                <h3>5. Personnalisation des Numérotations</h3>
+                <p>Configurez des règles de numérotation pour diriger les appels en fonction des besoins :</p>
+                <code>
+# Exemple de règle de numérotation
+[sortant]
+exten => _X.,1,Dial(SIP/${EXTEN}@fournisseur_voip)
+                </code>
+            </section>
+
+            <section>
+                <h2>Bonnes Pratiques</h2>
+                <ul>
+                    <li>Attribuez des mots de passe complexes pour les lignes et extensions.</li>
+                    <li>Surveillez les journaux pour détecter toute activité inhabituelle.</li>
+                    <li>Documentez la configuration pour faciliter la maintenance future.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Configuration des lignes et des extensions. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

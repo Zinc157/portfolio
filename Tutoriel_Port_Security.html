@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel : Configuration de la sécurité des ports (Port Security)</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        h1, h2, h3 { color: #333; }
+        h1 { text-align: center; }
+        pre { background: #f4f4f4; padding: 10px; border: 1px solid #ddd; overflow-x: auto; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        hr { margin: 20px 0; border: none; border-top: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Tutoriel : Configuration de la sécurité des ports (Port Security)</h1>
+    
+    <h2>Introduction</h2>
+    <p>La fonctionnalité Port Security permet de renforcer la sécurité d'un réseau commuté en contrôlant l'accès aux ports d'un switch. Elle limite le nombre de périphériques pouvant se connecter à un port et peut détecter et prévenir les attaques, telles que le mac flooding.</p>
+    <p>Dans ce tutoriel, nous allons expliquer les concepts de base de la sécurité des ports et fournir des étapes pour configurer cette fonctionnalité sur des switches.</p>
+    
+    <hr>
+    
+    <h2>Concepts de base</h2>
+    <ul>
+        <li><strong>Port Security</strong> : Une fonctionnalité qui permet de limiter le nombre d'adresses MAC autorisées sur un port.</li>
+        <li><strong>Adresses MAC sécurisées</strong> :
+            <ul>
+                <li><strong>Statique</strong> : Configurée manuellement par l'administrateur.</li>
+                <li><strong>Dynamique</strong> : Apprise automatiquement par le switch et supprimée lors d'un redémarrage.</li>
+                <li><strong>Collante (Sticky)</strong> : Apprise dynamiquement et sauvegardée dans la configuration en cours.</li>
+            </ul>
+        </li>
+        <li><strong>Modes de violation</strong> :
+            <ul>
+                <li><strong>Protect</strong> : Les adresses MAC non autorisées sont ignorées (le port reste actif).</li>
+                <li><strong>Restrict</strong> : Les adresses MAC non autorisées sont bloquées et une alerte est générée.</li>
+                <li><strong>Shutdown</strong> : Le port est désactivé en cas de violation (par défaut).</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Prérequis</h2>
+    <ul>
+        <li>Un switch compatible avec la fonctionnalité Port Security (Cisco, HP, etc.).</li>
+        <li>Compréhension de base des adresses MAC et de la configuration des switches.</li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Étapes pour configurer Port Security</h2>
+    
+    <h3>Exemple avec des switches Cisco (IOS)</h3>
+    <ol>
+        <li><strong>Activer Port Security sur un port :</strong>
+            <pre>Switch> enable
+Switch# configure terminal
+Switch(config)# interface FastEthernet0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport port-security</pre>
+        </li>
+        <li><strong>Configurer le nombre maximal d'adresses MAC autorisées :</strong>
+            <pre>Switch(config-if)# switchport port-security maximum 2</pre>
+        </li>
+        <li><strong>Configurer le type d'adresses MAC sécurisées :</strong>
+            <ul>
+                <li><strong>Adresses collantes (Sticky)</strong> :
+                    <pre>Switch(config-if)# switchport port-security mac-address sticky</pre>
+                </li>
+                <li><strong>Adresses statiques</strong> :
+                    <pre>Switch(config-if)# switchport port-security mac-address 00AA.BBCC.DDEE</pre>
+                </li>
+            </ul>
+        </li>
+        <li><strong>Définir l'action en cas de violation :</strong>
+            <pre>Switch(config-if)# switchport port-security violation shutdown</pre>
+        </li>
+        <li><strong>Vérifier la configuration :</strong>
+            <pre>Switch# show port-security interface FastEthernet0/1</pre>
+        </li>
+    </ol>
+    
+    <hr>
+    
+    <h2>Commandes supplémentaires utiles</h2>
+    <ul>
+        <li><strong>Vérifier l'état global de Port Security :</strong>
+            <pre>Switch# show port-security</pre>
+        </li>
+        <li><strong>Réinitialiser un port en cas de violation (mode shutdown) :</strong>
+            <pre>Switch# configure terminal
+Switch(config)# interface FastEthernet0/1
+Switch(config-if)# shutdown
+Switch(config-if)# no shutdown</pre>
+        </li>
+        <li><strong>Supprimer la configuration de Port Security d'un port :</strong>
+            <pre>Switch(config-if)# no switchport port-security</pre>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Conseils pour une configuration optimale</h2>
+    <ul>
+        <li>Activez Port Security uniquement sur les ports connectés à des hôtes finaux.</li>
+        <li>Limitez le nombre d'adresses MAC à une seule sur les ports critiques (par exemple, imprimantes ou caméras IP).</li>
+        <li>Sauvegardez la configuration après avoir activé les adresses MAC collantes :
+            <pre>Switch# copy running-config startup-config</pre>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>Conclusion</h2>
+    <p>La sécurité des ports est une fonctionnalité essentielle pour protéger votre réseau contre les accès non autorisés et les attaques courantes. En suivant les étapes présentées, vous pouvez configurer Port Security sur vos switches pour améliorer la sécurité et la fiabilité de votre infrastructure réseau. Adaptez les commandes en fonction de vos besoins et de votre équipement.</p>
+</body>
+</html>

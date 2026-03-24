@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation interactive avec Python</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Visualisation interactive avec Python</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Dans ce tutoriel, nous explorons comment utiliser des bibliothèques Python telles que Plotly et Bokeh pour créer des visualisations interactives. Ces outils permettent de manipuler et d'explorer des données de manière dynamique, offrant ainsi des perspectives approfondies.</p>
+            </section>
+
+            <section>
+                <h2>Installation des Bibliothèques</h2>
+                <p>Avant de commencer, assurez-vous d'avoir installé les bibliothèques nécessaires :</p>
+                <code>pip install plotly bokeh</code>
+            </section>
+
+            <section>
+                <h2>Création de Graphiques avec Plotly</h2>
+                <p>Plotly est une bibliothèque puissante pour créer des visualisations interactives. Voici un exemple simple :</p>
+                <code>
+import plotly.express as px
+
+# Exemple de graphique interactif
+df = px.data.gapminder()
+fig = px.scatter(df, x="gdpPercap", y="lifeExp", color="continent",
+                 size="pop", hover_name="country", log_x=True, title="GDP vs Life Expectancy")
+fig.show()
+                </code>
+            </section>
+
+            <section>
+                <h2>Création de Graphiques avec Bokeh</h2>
+                <p>Bokeh est une autre bibliothèque permettant de créer des visualisations interactives. Voici un exemple :</p>
+                <code>
+from bokeh.plotting import figure, show
+from bokeh.io import output_file
+
+# Exemple de graphique interactif
+output_file("interactive_plot.html")
+p = figure(title="Exemple Bokeh", x_axis_label="X", y_axis_label="Y")
+p.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], legend_label="Température", line_width=2)
+show(p)
+                </code>
+            </section>
+
+            <section>
+                <h2>Applications et Cas d'Utilisation</h2>
+                <ul>
+                    <li>Exploration de grands ensembles de données en temps réel.</li>
+                    <li>Création de tableaux de bord interactifs.</li>
+                    <li>Visualisation des résultats d'apprentissage automatique.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ressources Supplémentaires</h2>
+                <ul>
+                    <li><a href="https://plotly.com/python/">Documentation officielle de Plotly</a></li>
+                    <li><a href="https://docs.bokeh.org/">Documentation officielle de Bokeh</a></li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Visualisation Interactive avec Python. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

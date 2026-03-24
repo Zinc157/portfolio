@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaction avec MySQL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Interaction avec MySQL</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>PHP offre des fonctionnalités puissantes pour interagir avec des bases de données MySQL, permettant la gestion et l'utilisation dynamique des données dans vos applications web.</p>
+            </section>
+
+            <section>
+                <h2>Connexion à une base de données</h2>
+                <p>Pour se connecter à une base de données MySQL, utilisez l'extension <code>mysqli</code> ou <code>PDO</code>. Voici un exemple avec <code>mysqli</code> :</p>
+                <code>
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ma_base";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connexion échouée: " . $conn->connect_error);
+}
+echo "Connexion réussie";
+                </code>
+            </section>
+
+            <section>
+                <h2>Récupération de données</h2>
+                <p>Pour récupérer des données d'une table, utilisez une requête SQL avec la méthode <code>query</code> :</p>
+                <code>
+$sql = "SELECT id, nom, email FROM utilisateurs";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["id"] . " - Nom: " . $row["nom"] . " - Email: " . $row["email"] . "<br>";
+    }
+} else {
+    echo "0 résultats";
+}
+                </code>
+            </section>
+
+            <section>
+                <h2>Insertion de données</h2>
+                <p>Pour insérer des données dans une table, utilisez une requête <code>INSERT</code> :</p>
+                <code>
+$sql = "INSERT INTO utilisateurs (nom, email) VALUES ('Jean Dupont', 'jean@example.com')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Nouvel enregistrement créé avec succès";
+} else {
+    echo "Erreur: " . $sql . "<br>" . $conn->error;
+}
+                </code>
+            </section>
+
+            <section>
+                <h2>Fermeture de la connexion</h2>
+                <p>Une fois vos opérations terminées, fermez la connexion :</p>
+                <code>
+$conn->close();
+                </code>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Interaction avec MySQL. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

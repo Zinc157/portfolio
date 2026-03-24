@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Asterisk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Mise en place et configuration d’Asterisk</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Asterisk est un système open-source puissant qui permet de créer des solutions de téléphonie VoIP personnalisées. Ce tutoriel explique comment installer et configurer Asterisk pour répondre aux besoins spécifiques d’un réseau.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Un serveur ou une machine virtuelle avec un système d'exploitation Linux (par exemple, CentOS ou Ubuntu).</li>
+                    <li>Accès root à la machine.</li>
+                    <li>Connaissance de base des commandes Linux.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Installation d’Asterisk</h2>
+                <code>
+# Mettre à jour les paquets existants
+sudo apt update && sudo apt upgrade -y
+
+# Installer les dépendances nécessaires
+sudo apt install build-essential wget curl libncurses5-dev libssl-dev libxml2-dev -y
+
+# Télécharger les sources d’Asterisk
+cd /usr/src
+sudo wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz
+
+# Extraire les fichiers téléchargés
+sudo tar xvf asterisk-18-current.tar.gz
+cd asterisk-18.*
+
+# Installer les paquets supplémentaires
+sudo contrib/scripts/install_prereq install
+
+# Compiler et installer Asterisk
+sudo ./configure
+sudo make
+sudo make install
+sudo make samples
+sudo make config
+                </code>
+                <p>Une fois ces étapes terminées, Asterisk est installé sur votre machine et prêt à être configuré.</p>
+            </section>
+
+            <section>
+                <h2>Configuration de base</h2>
+                <h3>1. Configurer le fichier sip.conf</h3>
+                <code>
+# Modifier le fichier sip.conf
+sudo nano /etc/asterisk/sip.conf
+
+# Exemple de configuration
+[general]
+disallow=all
+allow=ulaw
+defaultuser=utilisateur
+secret=motdepasse
+host=dynamic
+context=default
+                </code>
+                <p>Ce fichier configure les paramètres SIP pour les utilisateurs.</p>
+
+                <h3>2. Configurer le fichier extensions.conf</h3>
+                <code>
+# Modifier le fichier extensions.conf
+sudo nano /etc/asterisk/extensions.conf
+
+# Exemple de configuration
+[default]
+exten => 100,1,Dial(SIP/100)
+exten => 101,1,Dial(SIP/101)
+                </code>
+                <p>Ce fichier définit les extensions et leur comportement dans le système téléphonique.</p>
+            </section>
+
+            <section>
+                <h2>Démarrage d’Asterisk</h2>
+                <code>
+# Lancer le service Asterisk
+sudo systemctl start asterisk
+
+# Vérifier le statut
+sudo systemctl status asterisk
+
+# Accéder à la console CLI d’Asterisk
+sudo asterisk -r
+                </code>
+                <p>Utilisez la console CLI pour tester et administrer Asterisk en temps réel.</p>
+            </section>
+
+            <section>
+                <h2>Test et débogage</h2>
+                <ul>
+                    <li>Vérifiez les utilisateurs enregistrés : <code>sip show peers</code></li>
+                    <li>Testez les appels entre extensions définies.</li>
+                    <li>Consultez les journaux pour résoudre les erreurs : <code>sudo tail -f /var/log/asterisk/messages</code></li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Asterisk. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

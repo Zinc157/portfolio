@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP de Base</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : PHP de Base</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>PHP est un langage de script côté serveur utilisé pour créer des pages web dynamiques. Il est facile à apprendre et largement utilisé dans le développement web.</p>
+            </section>
+
+            <section>
+                <h2>Variables</h2>
+                <p>Les variables en PHP commencent par un signe <code>$</code>. Par exemple :</p>
+                <code>
+$nom = "Jean";
+$age = 30;
+                </code>
+            </section>
+
+            <section>
+                <h2>Boucles</h2>
+                <p>PHP prend en charge plusieurs types de boucles, notamment :</p>
+                <ul>
+                    <li><code>for</code> : Pour itérer un nombre fixe de fois.</li>
+                    <li><code>while</code> : Pour itérer tant qu'une condition est vraie.</li>
+                    <li><code>foreach</code> : Pour parcourir les tableaux.</li>
+                </ul>
+                <code>
+// Exemple de boucle for
+for ($i = 0; $i < 5; $i++) {
+    echo $i;
+}
+                </code>
+            </section>
+
+            <section>
+                <h2>Fonctions</h2>
+                <p>Les fonctions permettent de regrouper du code réutilisable :</p>
+                <code>
+function direBonjour($nom) {
+    return "Bonjour, $nom !";
+}
+
+echo direBonjour("Alice");
+                </code>
+            </section>
+
+            <section>
+                <h2>Gestion des Erreurs</h2>
+                <p>PHP dispose de plusieurs outils pour gérer les erreurs, comme <code>try</code>, <code>catch</code>, et <code>finally</code> :</p>
+                <code>
+try {
+    $resultat = 10 / 0;
+} catch (Exception $e) {
+    echo "Erreur : " . $e->getMessage();
+} finally {
+    echo "Opération terminée.";
+}
+                </code>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 PHP de Base. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

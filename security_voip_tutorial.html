@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Sécurité VoIP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Sécurité dans VoIP</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce tutoriel détaille les étapes pour sécuriser les systèmes VoIP contre les menaces courantes, notamment les interceptions de données et les attaques par déni de service (DoS).</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Compréhension des principes de base de VoIP.</li>
+                    <li>Accès administratif aux équipements réseau et systèmes VoIP.</li>
+                    <li>Outils de diagnostic réseau, comme Wireshark.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Étapes de sécurisation</h2>
+                <h3>1. Mise en place de cryptage</h3>
+                <p>Le cryptage protège les communications VoIP contre les interceptions :</p>
+                <ul>
+                    <li>Configurer SRTP (Secure Real-time Transport Protocol) pour chiffrer les flux audio.</li>
+                    <li>Activer TLS (Transport Layer Security) pour sécuriser les signalisations SIP.</li>
+                </ul>
+
+                <h4>Exemple de configuration SIP avec cryptage :</h4>
+                <code>
+# Activer TLS sur un serveur SIP
+sip.conf
+[general]
+ tlsenable=yes
+ tlscertfile=/etc/asterisk/keys/asterisk.pem
+ tlscafile=/etc/asterisk/keys/ca.pem
+                </code>
+
+                <h3>2. Restriction d’accès</h3>
+                <p>Utilisez des listes de contrôle d’accès (ACL) pour limiter les connexions aux adresses IP autorisées :</p>
+                <code>
+# Exemple d’ACL sur un routeur Cisco
+access-list 101 permit tcp host 192.168.1.100 eq 5060
+access-list 101 deny tcp any any
+interface GigabitEthernet0/1
+ ip access-group 101 in
+                </code>
+
+                <h3>3. Protection contre les attaques DoS</h3>
+                <p>Activez des mécanismes de prévention pour détecter et bloquer les attaques DoS :</p>
+                <ul>
+                    <li>Configurer un pare-feu pour filtrer les paquets malveillants.</li>
+                    <li>Mettre en œuvre des limites de débit pour prévenir les surcharges.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Outils de surveillance</h2>
+                <p>Surveillez activement votre réseau pour détecter les anomalies :</p>
+                <ul>
+                    <li>Utilisez <strong>Wireshark</strong> pour analyser les flux VoIP.</li>
+                    <li>Déployez des systèmes de détection d'intrusion (IDS) comme Snort.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Bonnes pratiques</h2>
+                <ul>
+                    <li>Changez régulièrement les mots de passe des systèmes VoIP.</li>
+                    <li>Maintenez à jour le firmware des équipements réseau.</li>
+                    <li>Implémentez une segmentation réseau pour isoler le trafic VoIP.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Sécurité dans VoIP. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggregation de Liens (LACP)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-left: 4px solid #ccc;
+            overflow-x: auto;
+        }
+        code {
+            color: #d63384;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Aggregation de Liens (LACP)</h1>
+    </header>
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>L’agrégation de liens, ou Link Aggregation Control Protocol (LACP), permet de regrouper plusieurs connexions physiques en un lien logique unique. Cela augmente la bande passante disponible et fournit une redondance en cas de panne de l’un des liens physiques.</p>
+
+        <h2>Avantages</h2>
+        <ul>
+            <li><strong>Augmentation de la bande passante :</strong> Les liens agrégés fonctionnent comme une seule interface logique, augmentant la capacité de transmission.</li>
+            <li><strong>Redondance :</strong> En cas de défaillance d’un lien physique, les autres continuent à fonctionner.</li>
+            <li><strong>Simplicité :</strong> Une seule interface logique pour gérer plusieurs connexions physiques.</li>
+        </ul>
+
+        <h2>Configuration de LACP</h2>
+        <p>Voici les étapes générales pour configurer LACP sur un switch ou un routeur :</p>
+
+        <h3>Étape 1 : Vérifiez la compatibilité</h3>
+        <p>Assurez-vous que vos équipements réseau (switches, routeurs) supportent LACP.</p>
+
+        <h3>Étape 2 : Connectez les interfaces physiques</h3>
+        <p>Connectez les interfaces physiques que vous souhaitez agréger entre les deux appareils.</p>
+
+        <h3>Étape 3 : Configurez les interfaces</h3>
+        <p>Exemple de configuration sur un switch Cisco :</p>
+        <pre><code>
+interface range GigabitEthernet1/0/1 - 2
+  channel-group 1 mode active
+  exit
+interface Port-Channel 1
+  description LACP Link Aggregation
+  switchport mode trunk
+        </code></pre>
+
+        <p>Pour un switch sous Linux avec <code>bonding</code> :</p>
+        <pre><code>
+# Installer le module bonding
+sudo modprobe bonding
+
+# Configurer le fichier d’interface
+sudo nano /etc/network/interfaces
+
+# Ajouter la configuration suivante
+iface bond0 inet static
+    address 192.168.1.100
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+    bond-slaves eth0 eth1
+    bond-mode 802.3ad
+    bond-miimon 100
+        </code></pre>
+
+        <h2>Vérification</h2>
+        <p>Pour vérifier l’état de l’agrégation :</p>
+        <ul>
+            <li><strong>Cisco :</strong> Utilisez la commande <code>show etherchannel summary</code>.</li>
+            <li><strong>Linux :</strong> Utilisez la commande <code>cat /proc/net/bonding/bond0</code>.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>LACP est une solution efficace pour améliorer la fiabilité et la performance du réseau en agrégeant plusieurs liens physiques. Avec une configuration appropriée, il offre une bande passante accrue et une meilleure tolérance aux pannes.</p>
+    </div>
+    <footer>
+        <p>&copy; 2025 Tutoriel LACP. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

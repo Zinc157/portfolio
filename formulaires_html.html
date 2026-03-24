@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaires HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Formulaires HTML</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Les formulaires HTML permettent de collecter des données auprès des utilisateurs. Ils utilisent divers éléments tels que <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, et <code>&lt;button&gt;</code> pour créer des interfaces interactives.</p>
+            </section>
+
+            <section>
+                <h2>Principaux Éléments d'un Formulaire</h2>
+                <ul>
+                    <li><code>&lt;form&gt;</code> : Conteneur principal du formulaire.</li>
+                    <li><code>&lt;input&gt;</code> : Champ d'entrée pour du texte, des mots de passe, des e-mails, etc.</li>
+                    <li><code>&lt;textarea&gt;</code> : Zone de texte multilignes.</li>
+                    <li><code>&lt;button&gt;</code> : Bouton pour soumettre ou réinitialiser le formulaire.</li>
+                    <li><code>&lt;select&gt;</code> et <code>&lt;option&gt;</code> : Menu déroulant pour des sélections.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Exemple de Formulaire</h2>
+                <code>
+&lt;form action="/submit" method="post"&gt;
+    &lt;label for="name"&gt;Nom :&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required&gt;
+
+    &lt;label for="email"&gt;Email :&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+
+    &lt;label for="message"&gt;Message :&lt;/label&gt;
+    &lt;textarea id="message" name="message" rows="4"&gt;&lt;/textarea&gt;
+
+    &lt;button type="submit"&gt;Envoyer&lt;/button&gt;
+&lt;/form&gt;
+                </code>
+            </section>
+
+            <section>
+                <h2>Bonnes Pratiques</h2>
+                <ul>
+                    <li>Utilisez les attributs <code>required</code> pour garantir que des champs obligatoires ne soient pas laissés vides.</li>
+                    <li>Ajoutez des étiquettes (<code>&lt;label&gt;</code>) pour améliorer l'accessibilité.</li>
+                    <li>Utilisez des types d'entrée adaptés comme <code>email</code>, <code>password</code>, et <code>number</code>.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Formulaires HTML. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel BGP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Protocole BGP</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>BGP (Border Gateway Protocol) est un protocole utilisé pour échanger des informations de routage entre différents systèmes autonomes (AS). Il est essentiel pour le fonctionnement d'Internet en tant que réseau global.</p>
+            </section>
+
+            <section>
+                <h2>Caractéristiques principales</h2>
+                <ul>
+                    <li>Permet l'interconnexion de multiples réseaux autonomes.</li>
+                    <li>Utilise des mises à jour incrémentielles pour réduire la consommation de bande passante.</li>
+                    <li>Prise en charge des politiques de routage personnalisées.</li>
+                    <li>Fonctionne sur le protocole TCP (port 179).</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fonctionnement</h2>
+                <ol>
+                    <li><strong>Établissement des sessions :</strong> BGP utilise TCP pour établir des sessions entre routeurs (peers).</li>
+                    <li><strong>Échange des routes :</strong> Les routeurs échangent des informations sur les préfixes IP qu'ils peuvent atteindre.</li>
+                    <li><strong>Application des politiques :</strong> Les politiques définies par les administrateurs influencent les décisions de routage.</li>
+                    <li><strong>Mise à jour :</strong> Les changements sont communiqués uniquement lorsqu'ils se produisent.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Commandes BGP de base</h2>
+                <p>Voici quelques commandes courantes pour configurer BGP sur des routeurs Cisco :</p>
+                <code>
+router bgp 65001
+neighbor 192.168.1.1 remote-as 65002
+network 192.168.10.0 mask 255.255.255.0
+show ip bgp
+show ip bgp summary
+                </code>
+            </section>
+
+            <section>
+                <h2>Exemple de configuration</h2>
+                <code>
+# Activer BGP avec un numéro d'AS
+router bgp 65001
+
+# Configurer un voisin BGP
+neighbor 192.168.1.1 remote-as 65002
+
+# Annoncer un réseau spécifique
+network 192.168.10.0 mask 255.255.255.0
+
+# Vérifier les routes BGP
+show ip bgp
+
+# Résumé de la session BGP
+show ip bgp summary
+                </code>
+            </section>
+
+            <section>
+                <h2>Avantages et inconvénients</h2>
+                <h3>Avantages</h3>
+                <ul>
+                    <li>Essentiel pour la connectivité Internet mondiale.</li>
+                    <li>Permet une grande flexibilité dans les politiques de routage.</li>
+                    <li>Très évolutif pour les grands réseaux.</li>
+                </ul>
+                <h3>Inconvénients</h3>
+                <ul>
+                    <li>Complexité de configuration et de maintenance.</li>
+                    <li>Sensibilité aux erreurs de configuration, pouvant causer des problèmes à grande échelle.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel BGP. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

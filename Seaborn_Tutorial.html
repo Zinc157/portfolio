@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seaborn : Visualisation de données statistiques</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2rem;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+        pre {
+            background: #f4f4f9;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            overflow-x: auto;
+            border-radius: 5px;
+        }
+        code {
+            color: #d63384;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Seaborn : Visualisation de données statistiques</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Seaborn est une bibliothèque Python basée sur Matplotlib qui permet de créer des visualisations de données statistiques attractives et informatives avec un minimum de code. Cette bibliothèque est particulièrement utile pour explorer et comprendre des jeux de données complexes.</p>
+            </section>
+
+            <section>
+                <h2>Installation</h2>
+                <p>Pour utiliser Seaborn, vous devez l’installer avec pip :</p>
+                <pre><code>pip install seaborn</code></pre>
+                <p>Assurez-vous également d'avoir installé NumPy, Pandas et Matplotlib, car Seaborn dépend de ces bibliothèques.</p>
+            </section>
+
+            <section>
+                <h2>Principales Fonctionnalités</h2>
+                <ol>
+                    <li>
+                        <strong>Visualisations univariées :</strong>
+                        <p>Seaborn permet de créer facilement des histogrammes et des graphiques de densité.</p>
+                        <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+
+data = sns.load_dataset("iris")
+sns.histplot(data['sepal_length'], kde=True)
+plt.show()</code></pre>
+                    </li>
+                    <li>
+                        <strong>Visualisations bivariées :</strong>
+                        <p>Créez des scatter plots et des heatmaps pour analyser les relations entre deux variables.</p>
+                        <pre><code>sns.scatterplot(x='sepal_length', y='sepal_width', data=data)
+plt.show()</code></pre>
+                    </li>
+                    <li>
+                        <strong>Graphiques catégoriels :</strong>
+                        <p>Seaborn facilite la création de boxplots, barplots et autres graphiques catégoriels.</p>
+                        <pre><code>sns.boxplot(x='species', y='sepal_length', data=data)
+plt.show()</code></pre>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Personnalisation</h2>
+                <p>Avec Seaborn, vous pouvez personnaliser vos graphiques à l’aide de thèmes prédéfinis :</p>
+                <pre><code>sns.set_theme(style="whitegrid")
+sns.boxplot(x='species', y='petal_length', data=data)
+plt.show()</code></pre>
+                <p>Les thèmes disponibles incluent <code>darkgrid</code>, <code>whitegrid</code>, <code>dark</code>, <code>white</code>, et <code>ticks</code>.</p>
+            </section>
+
+            <section>
+                <h2>Ressources Supplémentaires</h2>
+                <ul>
+                    <li><a href="https://seaborn.pydata.org/">Documentation officielle de Seaborn</a></li>
+                    <li><a href="https://matplotlib.org/">Documentation Matplotlib</a></li>
+                    <li><a href="https://pandas.pydata.org/">Documentation Pandas</a></li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Visualisation de données avec Seaborn. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

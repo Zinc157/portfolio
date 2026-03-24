@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Cisco VoIP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Configuration et gestion des solutions VoIP Cisco</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce tutoriel explore les étapes de configuration et de gestion des solutions VoIP Cisco, qui offrent des communications vocales professionnelles et sécurisées.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Un équipement Cisco prenant en charge la VoIP (par exemple, un routeur ou un switch).</li>
+                    <li>Logiciel Cisco IOS configuré sur l’équipement.</li>
+                    <li>Accès aux commandes en mode privilégié (enable mode).</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Configuration de base</h2>
+                <h3>1. Activer la fonctionnalité VoIP</h3>
+                <code>
+# Accéder au mode configuration globale
+configure terminal
+
+# Activer les services VoIP
+telephony-service
+max-ephones 5
+max-dn 10
+ip source-address 192.168.1.1 port 2000
+                </code>
+                <p>Cette configuration initialise le service VoIP et définit les paramètres réseau de base.</p>
+
+                <h3>2. Configurer les numéros de ligne (Directory Numbers)</h3>
+                <code>
+# Configurer un numéro de ligne (DN)
+ephone-dn 1
+number 1001
+label Poste_1001
+name Utilisateur_1
+                </code>
+                <p>Les DNs sont utilisés pour attribuer des numéros aux appareils VoIP.</p>
+
+                <h3>3. Configurer les téléphones IP</h3>
+                <code>
+# Associer un téléphone à un DN
+ephone 1
+mac-address 0011.2233.4455
+description Poste_1001
+ephone-dn 1
+                </code>
+                <p>Cette configuration lie un appareil spécifique à un numéro de ligne.</p>
+            </section>
+
+            <section>
+                <h2>Test et validation</h2>
+                <ul>
+                    <li>Vérifier l’état des téléphones enregistrés : <code>show ephone registered</code></li>
+                    <li>Tester les appels internes en composant les numéros configurés.</li>
+                    <li>Utiliser des commandes de diagnostic pour résoudre les problèmes : <code>debug voice ccapi inout</code></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Optimisation et maintenance</h2>
+                <p>Pour garantir une performance optimale, surveillez régulièrement les journaux d’appels, mettez à jour le firmware des appareils et appliquez les meilleures pratiques de sécurité (par exemple, des mots de passe SIP robustes).</p>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Cisco VoIP. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

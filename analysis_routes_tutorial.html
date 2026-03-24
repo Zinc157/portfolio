@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Analyse des Routes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Analyse des Routes</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>L'analyse des routes est une étape essentielle pour diagnostiquer et optimiser les chemins réseau. Elle repose sur l'utilisation de commandes spécifiques pour comprendre le comportement du routage dans un réseau donné.</p>
+            </section>
+
+            <section>
+                <h2>Outils couramment utilisés</h2>
+                <ul>
+                    <li><strong>traceroute :</strong> Permet de suivre le chemin pris par les paquets pour atteindre une destination.</li>
+                    <li><strong>show ip route :</strong> Affiche la table de routage d'un routeur pour examiner les routes connues.</li>
+                    <li><strong>ping :</strong> Vérifie la connectivité avec une destination.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fonctionnement des commandes</h2>
+                <h3>Traceroute</h3>
+                <code>
+# Exemple d'utilisation de traceroute sous Cisco
+traceroute 192.168.1.1
+                </code>
+                <p>Cette commande montre chaque saut (routeur) emprunté par les paquets, avec les temps de réponse correspondants.</p>
+
+                <h3>Show IP Route</h3>
+                <code>
+# Affichage de la table de routage
+show ip route
+                </code>
+                <p>Permet de voir les routes directement connectées, statiques et apprises dynamiquement.</p>
+
+                <h3>Ping</h3>
+                <code>
+# Vérification de la connectivité
+ping 8.8.8.8
+                </code>
+                <p>Utile pour tester si une destination est atteignable.</p>
+            </section>
+
+            <section>
+                <h2>Exemple de diagnostic</h2>
+                <code>
+# Étape 1 : Vérification de la connectivité
+ping 192.168.1.1
+
+# Étape 2 : Suivi du chemin des paquets
+traceroute 192.168.1.1
+
+# Étape 3 : Analyse de la table de routage
+show ip route
+                </code>
+                <p>Ces étapes permettent d'identifier les éventuels problèmes de routage ou de connectivité.</p>
+            </section>
+
+            <section>
+                <h2>Avantages de l'analyse des routes</h2>
+                <ul>
+                    <li>Détection rapide des problèmes de routage.</li>
+                    <li>Optimisation des chemins réseau pour améliorer les performances.</li>
+                    <li>Identification des configurations incorrectes ou des équipements défaillants.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Analyse des Routes. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

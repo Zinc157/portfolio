@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Protocoles VoIP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Protocoles VoIP</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce tutoriel couvre les protocoles essentiels pour le VoIP, notamment SIP (Session Initiation Protocol) et RTP (Real-time Transport Protocol), ainsi que leurs configurations de base.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Connaissances de base en réseaux et en VoIP.</li>
+                    <li>Un équipement compatible avec VoIP (routeur, PBX, ou logiciel comme Asterisk).</li>
+                    <li>Accès administratif à l’équipement pour effectuer des configurations.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Protocoles de VoIP</h2>
+                <h3>1. SIP (Session Initiation Protocol)</h3>
+                <p>SIP est utilisé pour établir, modifier et terminer des sessions de communication en VoIP.</p>
+                <h4>Configuration de base :</h4>
+                <code>
+# Activer SIP sur un équipement
+voice service voip
+sip
+
+# Configurer un profil SIP
+sip-ua
+registrar ipv4:192.168.1.100 expires 3600
+                </code>
+
+                <h3>2. RTP (Real-time Transport Protocol)</h3>
+                <p>RTP transporte les flux audio et vidéo en temps réel.</p>
+                <p>RTP est activé automatiquement lors de l’utilisation de SIP pour les appels vocaux ou vidéo.</p>
+            </section>
+
+            <section>
+                <h2>Test et validation</h2>
+                <ul>
+                    <li>Utiliser la commande <code>show sip-ua status</code> pour vérifier l’état des connexions SIP.</li>
+                    <li>Tester un appel VoIP pour valider le fonctionnement de RTP.</li>
+                    <li>Analyser les paquets réseau avec un outil comme Wireshark pour surveiller le trafic SIP/RTP.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Optimisation et maintenance</h2>
+                <p>Pour assurer des performances optimales, il est conseillé de :</p>
+                <ul>
+                    <li>Surveiller régulièrement les journaux des appels et l’utilisation de la bande passante.</li>
+                    <li>Configurer QoS (Quality of Service) pour prioriser le trafic VoIP.</li>
+                    <li>Appliquer les mises à jour de sécurité pour prévenir les vulnérabilités dans les protocoles.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Protocoles VoIP. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

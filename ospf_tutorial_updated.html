@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel OSPF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Protocole OSPF</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>OSPF (Open Shortest Path First) est un protocole de routage à état de liens largement utilisé dans les réseaux internes pour déterminer les chemins les plus courts entre les routeurs. Il fait partie de la famille des protocoles IGP (Interior Gateway Protocol) et fonctionne sur le protocole IP.</p>
+            </section>
+
+            <section>
+                <h2>Caractéristiques principales</h2>
+                <ul>
+                    <li>Utilise l'algorithme de Dijkstra pour calculer les chemins les plus courts.</li>
+                    <li>Prise en charge de la hiérarchie en divisant le réseau en zones (area).</li>
+                    <li>Communication efficace grâce à l'utilisation de messages LSA (Link State Advertisements).</li>
+                    <li>Convergence rapide et adaptabilité en cas de modification du réseau.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fonctionnement</h2>
+                <ol>
+                    <li><strong>Découverte des voisins :</strong> Les routeurs identifient les routeurs voisins en échangeant des messages Hello.</li>
+                    <li><strong>État des liens :</strong> Chaque routeur crée une base de données d'état de liens (LSDB) qui contient des informations sur les connexions des autres routeurs.</li>
+                    <li><strong>Calcul des chemins :</strong> L'algorithme de Dijkstra est utilisé pour générer une table de routage basée sur la LSDB.</li>
+                    <li><strong>Mise à jour :</strong> Les LSDB sont synchronisées entre routeurs via des LSA pour refléter les changements dans le réseau.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Structure du réseau OSPF</h2>
+                <p>OSPF organise les réseaux en zones. Chaque zone est connectée à une zone centrale appelée Area 0 ou backbone :</p>
+                <ul>
+                    <li><strong>Area 0 :</strong> Zone principale où transitent les informations entre les autres zones.</li>
+                    <li><strong>Autres zones :</strong> Zones périphériques connectées à l'Area 0.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Commandes OSPF de base</h2>
+                <p>Voici quelques commandes courantes utilisées pour configurer OSPF sur des routeurs Cisco :</p>
+                <code>
+router ospf 1
+network 192.168.1.0 0.0.0.255 area 0
+network 10.0.0.0 0.0.0.255 area 1
+show ip ospf
+show ip ospf neighbor
+                </code>
+            </section>
+
+            <section>
+                <h2>Exemple de configuration</h2>
+                <code>
+# Activer OSPF avec un ID de processus
+router ospf 1
+
+# Ajouter des réseaux à OSPF
+network 192.168.10.0 0.0.0.255 area 0
+network 10.0.1.0 0.0.0.255 area 1
+
+# Vérifier la configuration
+show running-config | section ospf
+
+# Vérifier les voisins OSPF
+show ip ospf neighbor
+                </code>
+            </section>
+
+            <section>
+                <h2>Avantages et inconvénients</h2>
+                <h3>Avantages</h3>
+                <ul>
+                    <li>Convergence rapide.</li>
+                    <li>Évolutif grâce à la hiérarchie par zones.</li>
+                    <li>Prise en charge de réseaux hétérogènes.</li>
+                </ul>
+                <h3>Inconvénients</h3>
+                <ul>
+                    <li>Configuration plus complexe que d'autres protocoles comme RIP.</li>
+                    <li>Consomme plus de ressources en termes de CPU et de mémoire.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel OSPF. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>

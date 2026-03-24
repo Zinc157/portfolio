@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel Cloud PBX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #2e2e2e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        code {
+            display: block;
+            background: #1c1c1c;
+            color: #76c7c0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutoriel : Cloud PBX</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introduction</h2>
+                <p>Ce guide explique comment installer et gérer un PBX basé dans le Cloud, offrant une communication flexible et évolutive pour les entreprises.</p>
+            </section>
+
+            <section>
+                <h2>Prérequis</h2>
+                <ul>
+                    <li>Un fournisseur de services Cloud compatible PBX (comme AWS, Azure, ou Google Cloud).</li>
+                    <li>Connaissances de base en téléphonie VoIP et réseaux.</li>
+                    <li>Accès à un logiciel PBX compatible, tel qu’Asterisk ou 3CX.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Étapes d’Installation</h2>
+                <h3>1. Préparation de l’Environnement Cloud</h3>
+                <p>Créez une instance dans votre fournisseur Cloud :</p>
+                <code>
+# Exemple avec AWS CLI
+aws ec2 run-instances \
+    --image-id ami-0abcdef1234567890 \
+    --count 1 \
+    --instance-type t2.micro \
+    --key-name my-key-pair \
+    --security-group-ids sg-903004f8 \
+    --subnet-id subnet-6e7f829e
+                </code>
+
+                <h3>2. Installation du Logiciel PBX</h3>
+                <p>Connectez-vous à l’instance et installez un logiciel PBX :</p>
+                <code>
+# Exemple avec Asterisk
+sudo apt update
+sudo apt install asterisk
+                </code>
+
+                <h3>3. Configuration des Utilisateurs</h3>
+                <p>Ajoutez des comptes pour les utilisateurs :</p>
+                <code>
+# Exemple de configuration SIP
+[utilisateur1]
+type=friend
+username=utilisateur1
+secret=motdepasse
+host=dynamic
+context=default
+                </code>
+
+                <h3>4. Configuration des Trunks</h3>
+                <p>Connectez le PBX à un fournisseur VoIP :</p>
+                <code>
+# Exemple de trunk SIP
+[fournisseur_voip]
+type=peer
+host=sip.fournisseur.com
+username=fournisseur_voip
+secret=motdepasse
+                </code>
+
+                <h3>5. Routage des Appels</h3>
+                <p>Définissez les règles d’appel :</p>
+                <code>
+# Exemple pour acheminer les appels sortants
+[outgoing]
+    exten => _X.,1,Dial(SIP/${EXTEN}@fournisseur_voip)
+                </code>
+
+                <h3>6. Test de la Configuration</h3>
+                <p>Testez les appels entrants et sortants pour valider le bon fonctionnement.</p>
+            </section>
+
+            <section>
+                <h2>Bonnes Pratiques</h2>
+                <ul>
+                    <li>Surveillez l’utilisation des ressources Cloud pour optimiser les coûts.</li>
+                    <li>Implémentez des mesures de sécurité, telles que des pare-feu et le chiffrement des appels.</li>
+                    <li>Utilisez des sauvegardes régulières pour éviter les pertes de données.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Tutoriel Cloud PBX. Tous droits réservés.</p>
+        </footer>
+    </div>
+</body>
+</html>
